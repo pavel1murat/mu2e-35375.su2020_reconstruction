@@ -1,7 +1,7 @@
 #
-* a note describing SU2020 datasets
+* a note describing SU2020 reconstruction
 * ------------------------------------------------------------------------------
-* note: file:./tmp/mu2e_36372.pdf    
+* note: file:./tmp/mu2e_36375.pdf    
 * ------------------------------------------------------------------------------
 * to check out and build:                                                    
 
@@ -12,10 +12,10 @@
 
   2) check out and build the note:
 
-  git clone https://github.com/pavel1murat/mu2e_31019.git
-  cd mu2e_31019
+  git clone https://github.com/pavel1murat/mu2e_36375.su2020_reconstruction.git
+  cd mu2e_36375.su2020_reconstruction
   make note
-  okular tmp/mu2e_31019.pdf &
+  okular tmp/mu2e_36375.pdf &
 
 * converting a *.ris* reference to *.bib* format (need bibutils rpm)         
   
