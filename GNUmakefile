@@ -4,7 +4,7 @@
 #------------------------------------------------------------------------------
 dir=.
 
-tex_files := $(wildcard *.tex)
+tex_files := mu2e-36375.tex   # $(wildcard *.tex)
 
 pdfs := $(patsubst figures/eps/%.eps, figures/pdf/%.pdf,  $(wildcard figures/eps/*.eps ))
 
@@ -24,10 +24,8 @@ png: $(pngs)
 note: $(tex_files) pdf 
 	if [ ! -d tmp ] ; then mkdir tmp ; fi ; \
 	pdflatex -output-directory=tmp $^ ; \
-	cd tmp ; \
-	bibtex mu2e_31019 ; \
-	cd .. ; \
-	pdflatex -output-directory=tmp $^
+	cd tmp ; bibtex mu2e-36375 ; \
+	cd .. ; pdflatex -output-directory=tmp $^
 
 all: pdf note
 	echo $(pdfs)
