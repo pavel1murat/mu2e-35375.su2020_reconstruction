@@ -4,30 +4,13 @@
 %%% End:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\section{Track Selections}
+\section{Track momentum corrections}
 
-Selection of correctly reconstructed tracks plays a critical role in the search.
-In the Mu2e offline, there are two track fitters which correspond to two different
-hit ambiguity resolvers. An ANN-based training has been performed only for one of them,
-so-called ``panel-based ambiguity resolver''.
-
-We performed a similar training for the output of the track fits using the doublet-based
-ambiguity resolver.
-
-Following \cite{MU2E_4595_ANN_TRAINING}, we used ROOT TMVA package to train a MLP ANN
-with 8 input variables and one hidden layer. The following variables were used as inputs:
-
-.....
-
-The goal of training was to optimize separation of the electron tracks reconstructed correctly,
-with $\Delta{P} = |P_{reco}-P_{true}| < 0.25$ MeV/c, or approximately $2\sigma$, from tracks
-reconstructed with $\Delta{P} > 0.7$ MeV/c, or , approximately, $5\sigma$ above the true value.
-The comparison between the $P_{true}$ and $P_{reco}$ was performed in a plane corresponding to
-the tracker entrance. 
-
-As a cross-check, we also trained a BDT-based TMVA classifier. Similar to \cite{MU2E_33150_ANN_TRAINING},
-we found that the ANN performed slightly better, so current analysis uses an ANN-based track
-quality selection.
+The mean value of the reconstructed track momentum extrapolated to the tracker entrance is
+slightly lower than the true MC momentum of the corresponding MC particle.
+The offset is of the order of 30 keV/c and slightly different the track fits with different
+ambiguity resolvers.
+We correct the reconstructed momenta of PAR tracks by 34 keV/c , and DAR tracks - by 30 keV/c.
 
 \begin{figure}
 \begin{tikzpicture}
@@ -54,6 +37,37 @@ quality selection.
 }
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{Track Selections}
+
+Selection of correctly reconstructed tracks plays a critical role in the search.
+In the Mu2e offline, there are two track fitters which correspond to two different
+hit ambiguity resolvers. An ANN-based training has been performed only for one of them,
+so-called ``panel-based ambiguity resolver''.
+
+We performed a similar training for the output of the track fits using the doublet-based
+ambiguity resolver.
+
+Following \cite{MU2E_4595_ANN_TRAINING}, we used ROOT TMVA package to train a MLP ANN
+with 8 input variables and one hidden layer. The following variables were used as inputs:
+
+.....
+
+The goal of training was to optimize separation of the electron tracks reconstructed correctly,
+with $\Delta{P} = |P_{reco}-P_{true}| < 0.25$ MeV/c, or approximately $2\sigma$, from tracks
+reconstructed with $\Delta{P} > 0.7$ MeV/c, or , approximately, $5\sigma$ above the true value.
+The comparison between the $P_{true}$ and $P_{reco}$ was performed in a plane corresponding to
+the tracker entrance. 
+
+The acceptance cut |D0| < 100 mm require selected track to be consistent with coming
+from the stopping target.
+
+Cut on the track dip angle 0.5 < tan(dip) < 1 is, in essence, an anti-cosmic cut which
+needs to be optimized.
+
+As a cross-check, we also trained a BDT-based TMVA classifier. Similar to \cite{MU2E_33150_ANN_TRAINING},
+we found that the ANN performed slightly better, so current analysis uses an ANN-based track
+quality selection.
 
 Improvements in the track reconstruction resulted in a significantly better separation
 between the two classes of tracks. For example, the expected relative contribution of
@@ -86,7 +100,63 @@ To choose between the PAR-based and DAR-based fitters, we compared performance o
 trained DAR ANN to the performance of the PAR ANN.
 
 The results are shown in Figure ..... .
-Using the CD3 choice of the signal region , 103.85 < p < 104.9 MeV/c, we compared the
+Using the CD3 choice of the signal region , 103.85 < p < 104.90 MeV/c, we compared the
 CE reconstruction efficiency of the two methods vs the expected DIO background.
 
-The relative efficiency is 
+Figure \ref{fig:ann_operational_point_choice} shows the result.
+
+Use of the DAR track fits allows to increase acceptance by 4-5\%, while keeping the expected
+background below the level corresponding to PAR fits.
+
+The operational point corresponds to the cut on the output of DAR ANN $S_{DAR} > 0.2$.
+
+\begin{figure}
+\begin{tikzpicture}
+  \node[anchor=south west,inner sep=0] at (0,0.) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    \makebox[\textwidth][c] {
+      \includegraphics[width=0.99\textwidth]{figures/pdf/ann_operational_point_choice}
+    }
+  };
+  % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+\end{tikzpicture}
+% \captionof{figure} {
+\caption{
+  \label{fig:ann_operational_point_choice}
+  Choice of the ANN operational point. background numbers - from fele2s51b1,
+  signal efficiency: black points: cele0s51b1; Red: cele0s51b2;
+  Compared to PAR track selection $S_{PAR} > 0.8$, selecting DAR tracks with $S_{DAR} > 0.2$ 
+  improves acceptance in the CD3 signal region of [103.85,104.90] by 4-5\%, 
+  while keeping the DIO background at a lower level.
+  {\color{red} {\bf *** update caption **}}
+}
+\end{figure}
+
+Figure \ref{fig:dar_vs_par_ann} compares distributions of the track momentum resolution for DAR ANN-based track
+selections and PAR ANN-based track selection. For the PAR fit, the track selection corresponding to For DAR fits, we show two operational 
+
+\begin{figure}
+  \label{fig:dar_vs_par_ann}
+\begin{tikzpicture}
+  \node[anchor=south west,inner sep=0] at (-1,0.) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    % \makebox[\textwidth][c] {
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00114_cele0s51b2_track_comp_ffff_1070_trk_214_vs_126_dpf}
+    % }
+  };
+  \node[anchor=south west,inner sep=0] at (7.5,0.) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    % \makebox[\textwidth][c] {
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00115_cele0s51b2_track_comp_ffff_1070_trk_216_vs_126_dpf}
+    % }
+  };
+  % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+\end{tikzpicture}
+% \captionof{figure} {
+\caption{
+  track momentum resolution at the tracker front. DAR vs PAR fits,
+  PAR track quality selection: default offline.
+  DAR:track quality selection shown for two operational points, Left: the same background and the offline PAR,
+  right: the same efficiency as the offline PAR selection
+}
+\end{figure}

@@ -166,7 +166,7 @@ void plot(int Figure, int Print = 0) {
   if      (Figure == 113) {
    
     const char* dsid    = "su2020.fele2s51b1";
-    const char* ana_job = "track_comp_ffff_1070_nocorr";
+    const char* ana_job = "track_comp_use_mva_ffff_1070_nocorr";
 
     hd[0]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_214/dpf");
     hd[0].fRebin       = 1;
@@ -195,6 +195,138 @@ void plot(int Figure, int Print = 0) {
     plot_hist_1d(hd,nhist,-1);
 
     fit_asymm_gauss(hd[0].fHist,4.5e4,-0.033,0.13,0.11,-0.16,0.08);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  114: comparison of trk_214/dPf and trk_126/dPf
+//-----------------------------------------------------------------------------
+  if      (Figure == 114) {
+    const char* dsid    = "su2020.cele0s51b2";
+    const char* ana_job = "track_comp_use_mva_ffff_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_214/dpf");
+    hd[0].fYLogScale   = 1;
+    hd[0].fRebin       = 2;
+    hd[0].fXAxisTitle  = "#Delta P, MeV/c";
+    hd[0].fXMin        = -3.;
+    hd[0].fXMax        =  3.;
+    hd[0].fLabel       = "#Delta P";
+    hd[0].fLineColor   = kRed+2;
+    hd[0].fDrawOpt     = "hist";
+    // hd[0].fMarkerStyle = 20;
+    // hd[0].fMarkerSize  = 0.8;
+    // hd[0].fMarkerColor = kRed+2;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_cele0s51b2_track_comp_ffff_1070_trk_214_vs_126_dpf",Figure);
+			      
+    hd[0].fPlotLabel   = " ";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_126/dpf");
+    hd[1].fRebin       = 2;
+    hd[1].fDrawOpt     = "hist";
+    // hd[1].fMarkerStyle = 20;
+    // hd[1].fMarkerColor = kBlue+2;
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+    
+    int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  115: comparison of trk_217/dPf and trk_126/dPf
+//-----------------------------------------------------------------------------
+  if      (Figure == 115) {
+    const char* dsid    = "su2020.cele0s51b2";
+    const char* ana_job = "track_comp_use_mva_ffff_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_216/dpf");
+    hd[0].fYLogScale   = 1;
+    hd[0].fRebin       = 2;
+    hd[0].fXAxisTitle  = "#Delta P, MeV/c";
+    hd[0].fXMin        = -3.;
+    hd[0].fXMax        =  3.;
+    hd[0].fLabel       = "#Delta P";
+    //    hd[0].fMarkerColor = kRed+2;
+    hd[0].fLineColor   = kRed+2;
+    //    hd[0].fMarkerStyle = 20;
+    hd[0].fMarkerSize  = 0.8;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_cele0s51b2_track_comp_ffff_1070_trk_216_vs_126_dpf",Figure);
+			      
+    hd[0].fPlotLabel   = " ";
+    hd[0].fDrawOpt     = "hist";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_126/dpf");
+    hd[1].fRebin       = 2;
+    //    hd[1].fMarkerStyle = 20;
+    //    hd[1].fMarkerColor = kBlue+2;
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fDrawOpt     = "hist";
+    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+    
+    int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  116: comparison of trk_214/dPf and trk_122/dPf - same efficiency
+//-----------------------------------------------------------------------------
+  if      (Figure == 116) {
+    const char* dsid    = "su2020.cele0s51b2";
+    const char* ana_job = "track_comp_use_mva_ffff_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_214/dpf");
+    hd[0].fYLogScale   = 1;
+    hd[0].fRebin       = 2;
+    hd[0].fXAxisTitle  = "#Delta P, MeV/c";
+    hd[0].fXMin        = -3.;
+    hd[0].fXMax        =  3.;
+    hd[0].fLabel       = "#Delta P";
+    //    hd[0].fMarkerColor = kRed+2;
+    hd[0].fLineColor   = kRed+2;
+    //    hd[0].fMarkerStyle = 20;
+    hd[0].fMarkerSize  = 0.8;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_cele0s51b2_track_comp_ffff_1070_trk_214_vs_122_dpf",Figure);
+			      
+    hd[0].fPlotLabel   = " ";
+    hd[0].fDrawOpt     = "hist";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_122/dpf");
+    hd[1].fRebin       = 2;
+    //    hd[1].fMarkerStyle = 20;
+    //    hd[1].fMarkerColor = kBlue+2;
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fDrawOpt     = "hist";
+    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+    
+    int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
 
     hd[0].fCanvas->Modified();
     hd[0].fCanvas->Update();
