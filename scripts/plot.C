@@ -80,7 +80,7 @@ void plot(int Figure, int Print = 0) {
   if      (Figure == 111) {
    
     const char* dsid    = "su2020.fele2s51b1";
-    const char* ana_job = "track_comp_ffff_1070";
+    const char* ana_job = "track_comp_use_mva_ffff_1070";
 
     hd[0]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_276/dpf");
     hd[0].fRebin       = 5;

@@ -1,0 +1,38 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "mu2e-36575"
+%%% End:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Particle Identification}
+
+Datasets used for MVA training : {\bf ele00s61b0} and {\bf mumi0s61b0}
+
+
+\subsection {Event selection}
+
+After the reconstructed calorimeter cluster is included into the track fit, it biases the fit results.
+
+Something ( a bug?) in the track fit pulls the track timing to the cluster and biases
+the reconstructed track timing.
+
+There  is a correlation between the cluster timing residual and the reconstructed Z-coordinate of the
+``calorimeter cluster hit'', which the fitter varies in order to minimize the timing residual.
+
+As inclusion of the cluster into the track fit stabilizes the fit and improves its efficiency,
+we use track fits with the calorimeter cluster included.
+
+\subsection {Training}
+
+MVA classifiers were trained only for DAR resolver, however based on the nature of 
+the variables used, we expect the trained MVA to perform equally well for PAR tracks.
+
+Ran electron and muon reconstruction on the same event, MVA training used inputs from both
+
+For training: events which pass electron selection cuts
+
+Variables and their ranking:
+
+We didn't consider pathological cases with muons passing electron reconstruction, but failing
+the muon one, and assume the probability of that to be negligibly small.
+
