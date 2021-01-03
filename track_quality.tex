@@ -50,52 +50,37 @@ We performed a similar training for the output of the track fits using the doubl
 ambiguity resolver.
 
 Following \cite{MU2E_4595_ANN_TRAINING}, we used ROOT TMVA package to train a MLP ANN
-with 8 input variables and one hidden layer. The following variables were used as inputs:
+with 8 input variables and one hidden layer. The following eight variables were used as inputs:
 
-.....
+\begin{itemize}
+\item
+  {\bf na }: number of ``active'' hits remaining on the track after the Kalman fit
+\item
+  {\bf  nafract} = na/nhits , ratio of the number of active hits to the total number of hits
+  (after the seed fit)
+\item
+  $log_{10}{fcons}$ : {\bf fcons}, or fit consistency is a probability-minded derivative
+  from the track fit $\chi^2$. Logarithm of it it taken from the numerical considerations
+\item
+  {\bf momerr}: uncertainty on the reconstructed track momentum, returned by the fitter
+\item
+  {\bf t0err} : uncertainty on the reconstructed track time, T0, returned by the fitter
+\item
+  {\bf fda} : = Nd/Na, fraction of ``doublet'' active hits
+\item
+  {\bf fza } : = Nza/Na, fraction of activev hits with undefined drift direction
+\item
+  {\bf fma } : {\bf \red to be clarified}
+\end{itemize}
 
-The goal of training was to optimize separation of the electron tracks reconstructed correctly,
-with $\Delta{P} = |P_{reco}-P_{true}| < 0.25$ MeV/c, or approximately $2\sigma$, from tracks
-reconstructed with $\Delta{P} > 0.7$ MeV/c, or , approximately, $5\sigma$ above the true value.
-The comparison between the $P_{true}$ and $P_{reco}$ was performed in a plane corresponding to
-the tracker entrance. 
+Training was aimed to optimize separation of electron tracks reconstructed correctly, 
+with $\Delta{P} = |P_{reco}-P_{true}| < 0.25$ MeV/c, or with momenta reconstructed approximately
+within $2\sigma$ from the true value, from tracks reconstructed
+with $\Delta{P} > 0.7$ MeV/c, or , approximately, $5\sigma$ above the true value.
 
-The acceptance cut |D0| < 100 mm require selected track to be consistent with coming
-from the stopping target.
+Comparison between $P_{true}$ and $P_{reco}$ was performed in a  plane corresponding to the tracker front.
 
-Cut on the track dip angle 0.5 < tan(dip) < 1 is, in essence, an anti-cosmic cut which
-needs to be optimized.
-
-As a cross-check, we also trained a BDT-based TMVA classifier. Similar to \cite{MU2E_33150_ANN_TRAINING},
-we found that the ANN performed slightly better, so current analysis uses an ANN-based track
-quality selection.
-
-Improvements in the track reconstruction resulted in a significantly better separation
-between the two classes of tracks. For example, the expected relative contribution of
-the DIO tracks with $\Delta{P} > 0.5$ MeV inthe ``signal'' region, [103.6,105.0] MeV/s was
-found to be 0.228. This number is 50\% lower than 0.355, estimated in \cite{MU2E_4595_ANN_TRAINING}
-for the same region.
-\begin{figure}
-\begin{tikzpicture}
-  \node[anchor=south west,inner sep=0] at (0,0.) {
-    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
-    \makebox[\textwidth][c] {
-      \includegraphics[width=0.99\textwidth]{figures/pdf/figure_00111_fele2s51b1_track_comp_ffff_1070_trk_276_dpf}
-    }
-  };
-  % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
-\end{tikzpicture}
-% \captionof{figure} {
-\caption{
-  \label{fig:sindrum_ii_fig_08_fit} 
-  $\Delta P ~=~ P_{reco} -P_{true}$ distribution for simulated DIO background in the region [103.6,105.0] MeV.
-  77.2\% of reconstructed events in this region are expected to have $\Delta P < 0.5$ MeV/c
-}
-\end{figure}
-
-To explore the parameter space, we also trained a similar ANN to discriminate the tracks for
-$\Delta{P} < 0.25$ MeV/c from tracks with $\Delta{P} > 0.6$ MeV/c. No improvement in the DIO
-suppression in the region [103.85, 104.9] MeV/c was observed. 
+Tracks used for the ANN training were required to have |D0| < 100 mm and 0.5 < \tandip < 1 is. 
 
 To choose between the PAR-based and DAR-based fitters, we compared performance of the
 trained DAR ANN to the performance of the PAR ANN.
@@ -162,32 +147,70 @@ we show two operational points corresponding to the same efficiency and the same
 }
 \end{figure}
 
+Improvements in the track reconstruction resulted in a significantly better separation between the two classes of tracks.
+Shown in Figure \ref{fig:dio_delta_p_1036_1050} is the $\Delta{P}$ distribution for the simulated DIO electrons.
+with momenta reconstructed in the region [103.6, 105.0] MeV/c.
+Fraction of tracks with significantly mis-reconstructed momenta, $\Delta{P} > 0.5$ MeV, is about 0.23.
+about 50\% lower than 0.355, estimated in the same momentum window in \cite{MU2E_4595_ANN_TRAINING}..
+
+\begin{figure}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      \makebox[\textwidth][c] {
+        \includegraphics[width=0.99\textwidth]{figures/pdf/figure_00111_fele2s51b1_track_comp_ffff_1070_trk_276_dpf}
+      }
+    };
+    % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+  \end{tikzpicture}
+  % \captionof{figure} {
+  \caption{
+    \label{fig:dio_delta_p_1036_1050} 
+    $\Delta P ~=~ P_{reco} -P_{true}$ distribution for simulated DIO background in the region [103.6,105.0] MeV.
+    77.2\% of reconstructed events in this region are expected to have $\Delta P < 0.5$ MeV/c
+  }
+\end{figure}
+
+As a cross-check, we trained a BDT-based TMVA classifier. Similar to \cite{MU2E_33150_ANN_TRAINING},
+we found that the ANN performed slightly better, so current analysis uses an ANN-based track
+quality selection.
+
+To explore the parameter space, a similar ANN has been trained to discriminate the tracks reconstructed
+with $\Delta{P} < 0.25$ MeV/c from tracks with $\Delta{P} > 0.6$ MeV/c. No improvement in the DIO
+suppression in the region [103.85, 104.9] MeV/c was observed. 
+
+Continuing the phase space exploration, we trained an similar ANN with the bato discriminate the tracks for
+$\Delta{P} < 0.25$ MeV/c from tracks with $\Delta{P} > 0.6$ MeV/c. No improvement in the DIO
+suppression in the region [103.85, 104.9] MeV/c was observed. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Final track quality selections}
 
-Final track selection includes three cuts. The track impact parameter cut selects tracks consistent 
+The finalized track selection includes three cuts. The track impact parameter cut selects tracks consistent 
 with coming from the stopping target, the track $\tan\lambda$ cut, in essense, is an anti-cosmics cut, and 
-its final value needs to be optimized. The cut on the ANN scose selects well reconstucted tracks.
+its final value needs to be optimized. The cut on the ANN output, or score, variable selects
+well reconstucted tracks.
 
 \begin{table}[h!]
   \begin{center}
-    \caption{Final Track quality selection}
-    \label{tab:table1}
     \begin{tabular}{l|c|c} % <-- Changed to S here.
       \textbf{Cut variable} & \textbf{Cut value} & \textbf{``N-1'' Efficiency for CE}\\
       \hline
-      track impact parameter & | D0 | < 100 mm           &   0.990    \\
-      track dip angle        & $ 0.5< \tan \lambda < 1.$ &   0.909    \\
-      TRQ ANN score          & $S_{TRQ} > 0.2$            &   0.901    \\
+      track impact parameter,  D0 & | D0 | < 100 mm           &   0.990    \\
+      track dip angle, \tandip    & $ 0.5< \tan \lambda < 1.$ &   0.909    \\
+      track quality ANN score, $S_{TRQ}$      & $S_{TRQ} > 0.2$            &   0.901    \\
     \end{tabular}
   \end{center}
+  \caption{
+    \label{tab:trq_cuts}
+    Final Track quality selection
+  }
 \end{table}
 
-Table \ref{table:ce_trq_efficiency_vs_pileup}
+Table \ref{table:ce_trq_efficiency_vs_pileup} benchmarks the selection efficiencies for fits using two different
+anbiguity resolvers
 
 \begin{table}[h!]
-  \label{table:ce_trq_efficiency_vs_pileup_1} 
   \begin{center}
     \caption{Efficiency for different levels of pile-up occupancy}
     \label{tab:table1}
@@ -200,6 +223,7 @@ Table \ref{table:ce_trq_efficiency_vs_pileup}
     \end{tabular}
   \end{center}
   \caption{
+    \label{table:ce_trq_efficiency_vs_pileup_1} 
     conversion electron (CE) track selection efficiency for different levels of pileup and momentum window [103,105.0]  
     and T0 > 700 ns
   }
