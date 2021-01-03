@@ -46,21 +46,19 @@ void init_local(stn_book* Book) {
   }
   else if (strcmp(Book->Name(),"su2020") == 0) {
     d  = Book->NewDataset ("su2020.cele0s51b0" ,"",-1,   1000000); 
-    hf = Book->NewHistFile("su2020.cele0s51b0" ,"","su2020_conv_ana_dar"  );
-    hf = Book->NewHistFile("su2020.cele0s51b0" ,"","su2020_conv_ana_par"  );
-    hf = Book->NewHistFile("su2020.cele0s51b0" ,"","su2020_track_ana_dar_11_2"  );
-    hf = Book->NewHistFile("su2020.cele0s51b0" ,"","su2020_track_ana_par_11_2"  );
-    hf = Book->NewHistFile("su2020.cele0s51b0" ,"","track_ana"  );
+    hf = Book->NewHistFile("su2020.cele0s51b0" ,"","su2020_track_ana_dar_11_1070"  );
 
     d  = Book->NewDataset ("su2020.cele0s51b1" ,"",-1,   1000000); 
     hf = Book->NewHistFile("su2020.cele0s51b1" ,"","track_comp_use_mva_0060_1060");
     hf = Book->NewHistFile("su2020.cele0s51b1" ,"","track_comp_use_mva_0070_1070");
     hf = Book->NewHistFile("su2020.cele0s51b1" ,"","track_comp_use_mva_ffff_1070");
+    hf = Book->NewHistFile("su2020.cele0s51b1" ,"","su2020_track_ana_dar_11_1070");
 
     d  = Book->NewDataset ("su2020.cele0s51b2" ,"",-1,   1000000); 
     hf = Book->NewHistFile("su2020.cele0s51b2" ,"","track_comp_use_mva_0060_1060");
     hf = Book->NewHistFile("su2020.cele0s51b2" ,"","track_comp_use_mva_0070_1070");
     hf = Book->NewHistFile("su2020.cele0s51b2" ,"","track_comp_use_mva_ffff_1070");
+    hf = Book->NewHistFile("su2020.cele0s51b2" ,"","su2020_track_ana_dar_11_1070");
 
     d  = Book->NewDataset ("su2020.cosm0s71b0" ,"",-1,   1000000); // cluster included 
     hf = Book->NewHistFile("su2020.cosm0s71b0" ,"","su2020_cosmic_ana_dar"  );

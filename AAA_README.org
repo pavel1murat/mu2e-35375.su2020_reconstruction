@@ -16,7 +16,16 @@
   cd mu2e_36375.su2020_reconstruction
   make note
   okular tmp/mu2e_36375.pdf &
+* to add plots for the note, extending file:scripts/plot.C
 
+  - configure .rootrc: 
+
+    - mu2e.NotesDir should point to the parent of the directory where the note has been 
+      cloned ($parent/mu2e_36375.su2020_reconstruction)
+
+    - "mu2e.HistDir should point to the parent of the su2020 histogram directory: 
+       $parent/su2020 - see example of defaults in file:scripts/plot.C
+  
 * converting a *.ris* reference to *.bib* format (need bibutils rpm)         
   
   cat reference.ris | ris2xml | xml2bib >> ref.bib

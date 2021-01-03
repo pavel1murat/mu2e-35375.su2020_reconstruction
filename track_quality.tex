@@ -187,22 +187,42 @@ its final value needs to be optimized. The cut on the ANN scose selects well rec
 Table \ref{table:ce_trq_efficiency_vs_pileup}
 
 \begin{table}[h!]
+  \label{table:ce_trq_efficiency_vs_pileup_1} 
   \begin{center}
     \caption{Efficiency for different levels of pile-up occupancy}
     \label{tab:table1}
-    \begin{tabular}{l|c} % <-- Changed to S here.
-      \textbf{pileup} &  \textbf{Efficiency}\\
-      \hline
-      single track CE MC      &   0.8x    \\
-      CE+1-batch pileup       &   0.8x    \\
-      CE+2-batch pileup       &   0.8x    \\
+    \begin{tabular}{l|c|c|c} % <-- Changed to S here.
+      \textbf{pileup}    & Eff DAR &  Efficiency PAR  &  DAR/PAR   \\
+      \hline                                                           
+      CE                 &  0.152  &   0.149          &  1.02      \\
+      CE+1-batch pileup  &  0.152  &   0.146          &  1.04      \\
+      CE+2-batch pileup  &  0.149  &   0.143          &  1.04      \\
     \end{tabular}
   \end{center}
-\caption{
-  \label{table:ce_trq_efficiency_vs_pileup} 
-  CE track selection efficiency for different levels of pileup. 
-  {\color{red} \bf require MC energy > 103 MeV - fix - need MC energy at the tracker front}
-}
+  \caption{
+    conversion electron (CE) track selection efficiency for different levels of pileup and momentum window [103,105.0]  
+    and T0 > 700 ns
+  }
+\end{table}
+
+
+% PAR 1b:107810
+
+\begin{table}[h!]
+  \label{table:ce_trq_efficiency_vs_pileup_2} 
+  \begin{center}
+    \begin{tabular}{l|c|c|c} % <
+      \textbf{pileup}    & Eff DAR &  Efficiency PAR  &  DAR/PAR   \\
+      \hline                                                           
+      CE                 &  0.111  &   0.104          &  1.07      \\
+      CE+1-batch pileup  &  0.113  &   0.108          &  1.05      \\
+      CE+2-batch pileup  &  0.111  &   0.105          &  1.05      \\
+    \end{tabular}
+  \end{center}
+  \caption{
+    conversion electron (CE) track selection efficiency for different levels of pileup and momentum window [103.85,105.0] 
+    and T0 > 700 ns
+  }
 \end{table}
 
 

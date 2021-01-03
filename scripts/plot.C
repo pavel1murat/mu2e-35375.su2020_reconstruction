@@ -28,6 +28,9 @@ char  su2020_HistDir[500] = "";
 stn_catalog*   catalog;           // has to be global
 
 #include "init_local.C"
+
+#include "plot_tid.C"                     // track quality ID
+#include "plot_pid.C"                     // paerticle (e/mu) separation
 //-----------------------------------------------------------------------------
 // real [machine-dependent] values of Mu2eNotesDir and Mu2eHistDir 
 // should be defined in .rootrc
@@ -53,14 +56,13 @@ void init() {
   printf(" after init_local\n");
 }
 
-#include "plot_pid.C"
-
 //-----------------------------------------------------------------------------
 void plot(int Figure, int Print = 0) {
   hist_data_t hd[10];
 
   init();
 
+  if ((Figure >= 200) && (Figure < 300)) plot_tid(Figure,Print);
   if ((Figure >= 300) && (Figure < 400)) plot_pid(Figure,Print);
 //-----------------------------------------------------------------------------
 // fig    1: trk_200/dPf - DIO-weighted dPf for tracks with P > 103.6 MeV/c
