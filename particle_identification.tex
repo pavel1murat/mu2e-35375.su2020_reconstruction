@@ -1,5 +1,6 @@
+% -*- mode: latex; mode: flyspell -*-
+
 %%% Local Variables:
-%%% mode: latex
 %%% TeX-master: "mu2e-36575"
 %%% End:
 
@@ -27,12 +28,208 @@ we use track fits with the calorimeter cluster included.
 MVA classifiers were trained only for DAR resolver, however based on the nature of 
 the variables used, we expect the trained MVA to perform equally well for PAR tracks.
 
-Ran electron and muon reconstruction on the same event, MVA training used inputs from both
+Although both electron and muon reconstruction were ran on the same event, the MVA training used inputs 
+only fotm electron reconstruction. Adding requirement for a track to be reconstructed under muon hypothesis 
+complicates logic, reduces overall efficiency without providing a visible improvement.
 
-For training: events which pass electron selection cuts
+For training: events which have a track reconstructed under DEM\_DAR hypothesis and passing the track 
+selection cuts described in 
 
 Variables and their ranking:
+
+\begin{itemize}
+\item 
+  E(cluster)/P(track) : to reduce explicit dependence on the track momentum 
+\item 
+  number of crystals in the calorimeter cluster
+\item 
+  eSeedfr: fraction of energy in the seed crystal
+\item 
+  $\Delta T$ : time residual of the calorimeter cluster as determined by the kalman fit
+\item 
+  $Cluster Z$ : cluster Z-coordinate (within the corresponding calorimeter disk) as determined by the kalman fit
+\item 
+  $\Delta R$ : radial residual of the calorimeter cluster as determined by the kalman fit
+\item 
+  {\bf path} : overall length of the trajectory within the calorimeter disk, defines edges
+\end{itemize}
 
 We didn't consider pathological cases with muons passing electron reconstruction, but failing
 the muon one, and assume the probability of that to be negligibly small.
 
+\begin{figure}
+  \label{fig:pid_training_1}
+\begin{tikzpicture}
+  \node[anchor=south west,inner sep=0] at (-1,0.) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    % \makebox[\textwidth][c] {
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00300_pid_emuana_1070_trk_101_ep}
+    % }
+  };
+  \node[anchor=south west,inner sep=0] at (7.5,0.) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    % \makebox[\textwidth][c] {
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00301_pid_emuana_1070_trk_101_ncr}
+    % }
+  };
+  \node[anchor=south west,inner sep=0] at (-1,-5.5) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    % \makebox[\textwidth][c] {
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00302_pid_emuana_1070_trk_101_seed_fr}
+    % }
+  };
+  \node[anchor=south west,inner sep=0] at (7.5,-5.5) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    % \makebox[\textwidth][c] {
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00303_pid_emuana_1070_trk_101_tch_dt}
+    % }
+  };
+  \node[anchor=south west,inner sep=0] at (-1,-11.) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    % \makebox[\textwidth][c] {
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00304_pid_emuana_1070_trk_101_tch_dz}
+    % }
+  };
+  \node[anchor=south west,inner sep=0] at (7.5,-11.) {
+    % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+    % \makebox[\textwidth][c] {
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00305_pid_emuana_1070_trk_101_tch_dr}
+    % }
+  };
+  % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+\end{tikzpicture}
+% \captionof{figure} {
+\caption{
+  variables used in PID MVA training
+}
+\end{figure}
+
+5000 electron and 5000 muon tracks have been used for trainign
+
+Training preselection cuts:
+
+\begin{itemize}
+\item 
+  reject muon decays in flight: require muon Zmax > 10000,
+\item 
+  reconstructed track passed electron track selection
+\item 
+  an event has a reconstructed cluster 
+\item 
+  $\Delta T > -100$ : some events with reconstructed tracks and clusters had $\Delta T$ undefined
+\end{itemize}
+
+\begin{figure}
+  \label{fig:pid_training_2}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (-1,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00306_pid_emuana_1070_trk_101_path}
+      % }
+    };
+    % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+  \end{tikzpicture}
+  % \captionof{figure} {
+  \caption{
+    variables used in PID MVA training: particle path in the disk
+  }
+\end{figure}
+
+
+training plots :
+
+\begin{figure}
+  \label{fig:pid_training_2}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (-2,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/pid_mva_overtrain_mlp}
+      % }
+    };
+    \node[anchor=south west,inner sep=0] at (7.5,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/pid_mva_rejection_mlp}
+      % }
+    };
+    % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+  \end{tikzpicture}
+  % \captionof{figure} {
+  \caption{
+    output of the PID ANN training: overtraining check on the left and efficiency vs rejection 
+    on the right
+  }
+\end{figure}
+
+
+
+\begin{figure}
+  \label{fig:pid_training_2}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      \makebox[\textwidth][c] {
+        \includegraphics[width=1.0\textwidth]{figures/pdf/figure_00307_pid_emuana_1070_trk_101_pidmvaout}
+      }
+    };
+    % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+  \end{tikzpicture}
+  % \captionof{figure} {
+  \caption{
+    Distribution in the PID ANN score for electron and muon samples, samples include events used for training,
+    5000 events each. A spike in muon PID at 1  - muon decays in flight. \\ 
+    {\color{red} \bf Origin of the plotted underflow bin to be investigated}
+  }
+\end{figure}
+
+
+PID preselection cuts (ele00s61b0), for reference:
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Final Track quality selection}
+    \label{tab:table1}
+    \begin{tabular}{l|c|c} % <-- Changed to S here.
+      \textbf{Cut}                    & \textbf{N events after } & \textbf{Efficiency }\\
+      \hline
+      total number of tracks          & 343530           &            \\
+      \hline
+      track passes the selection cuts & 202167           &   0.588    \\
+      cluster $E > 10 MeV$            & 193204           &   0.956    \\
+      $P > 100$                       & 191012           &   0.989    \\
+      $|DR| < 100$ mm                 & 178866           &   {\color{red} \bf 0.936}    \\
+      $|DT| < 10$ ns                  & 178866           &   1.0      \\
+      $-50 < dz < 250$                & 176619           &   0.987    \\
+      $ E/P < 1.2$                    & 176619           &   1.0      \\
+      $PID >0.5$                      & 175310           &   0.993    \\
+    \end{tabular}
+  \end{center}
+  \caption{
+    PID preselection cuts (ele00s61b0) and efficiency for {\bf ele00s61b0} electrons 
+  }
+\end{table}
+
+About 6.5\% of all events with tracks and clusters don't have a good track fit, are rejected.
+this needs to be investigated.
+
+for electron events with the reconstructed track momentum $P > 100$ MeV/c, passing the preselections, 
+the PID efficiency is 0.993
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+Efficiency for muon events passing the same preselections: 
+
+\begin{itemize}
+\item
+  $P > 100$                       : 109004
+\item 
+  $PID >0.5$                      :    799
+\end{itemize}
+
+which is about 0.8\%.
+
+Contributing to muon mis-identification are decays of stopped muons with in the calorimeter, early part of the exponential, 
+in which the electron energy is counted as the part of the cluster energy

@@ -83,6 +83,9 @@ void init_local(stn_book* Book) {
     hf = Book->NewHistFile("su2020.ele00s51b0" ,"","track_comp"      );
     hf = Book->NewHistFile("su2020.ele00s51b0" ,"","su2020_track_ana");
 
+    d  = Book->NewDataset ("su2020.ele00s61b0" ,"",-1,       1000000);     // PID dataset
+    hf = Book->NewHistFile("su2020.ele00s61b0" ,"","pid_emuana_1070");
+
     d  = Book->NewDataset ("su2020.ele00sx1b0" ,"",-1,   1000000 ); // no cluster in the track fit
     hf = Book->NewHistFile("su2020.ele00sx1b0" ,"","track_comp"  );
 
@@ -110,6 +113,9 @@ void init_local(stn_book* Book) {
 
     d  = Book->NewDataset ("su2020.mbs00s11b1" ,"",-1,   200); 
     hf = Book->NewHistFile("su2020.mbs00s11b1" ,"","straw_hit_ana"  );
+
+    d  = Book->NewDataset ("su2020.mumi0s61b0" ,"",-1,       1000000);     // PID dataset
+    hf = Book->NewHistFile("su2020.mumi0s61b0" ,"","pid_emuana_1070");
 
     d  = Book->NewDataset ("su2020.pbar0s11b0" ,"",-1,2000000000); // Giovanni pbars at VD91
     hf = Book->NewHistFile("su2020.pbar0s11b0" ,"","spmc_ana"    );

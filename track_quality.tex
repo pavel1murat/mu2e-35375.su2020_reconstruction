@@ -1,5 +1,6 @@
+% -*- mode:flyspell; mode:latex  -*-
+
 %%% Local Variables:
-%%% mode: latex
 %%% TeX-master: "mu2e-36575"
 %%% End:
 
@@ -133,7 +134,8 @@ The operational point corresponds to the cut on the output of DAR ANN $S_{DAR} >
 \end{figure}
 
 Figure \ref{fig:dar_vs_par_ann} compares distributions of the track momentum resolution for DAR ANN-based track
-selections and PAR ANN-based track selection. For the PAR fit, the track selection corresponding to For DAR fits, we show two operational 
+selections and PAR ANN-based track selection. For the PAR fit, the track selection corresponding to For DAR fits, 
+we show two operational points corresponding to the same efficiency and the same expected DIO background.
 
 \begin{figure}
   \label{fig:dar_vs_par_ann}
@@ -147,16 +149,63 @@ selections and PAR ANN-based track selection. For the PAR fit, the track selecti
   \node[anchor=south west,inner sep=0] at (7.5,0.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00115_cele0s51b2_track_comp_ffff_1070_trk_216_vs_126_dpf}
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00116_cele0s51b2_track_comp_ffff_1070_trk_214_vs_122_dpf}
     % }
   };
   % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
 \end{tikzpicture}
 % \captionof{figure} {
 \caption{
-  track momentum resolution at the tracker front. DAR vs PAR fits,
-  PAR track quality selection: default offline.
-  DAR:track quality selection shown for two operational points, Left: the same background and the offline PAR,
-  right: the same efficiency as the offline PAR selection
+  track momentum resolution at the tracker front. 
+  DAR vs PAR track selection efficiency for two operational points, left: DAR and PAR selections correspond to the same background, 
+  right: DAR and PAR selections correspond to the same efficiency. The right-hand tail give the measure of quality 
 }
 \end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Final track quality selections}
+
+Final track selection includes three cuts. The track impact parameter cut selects tracks consistent 
+with coming from the stopping target, the track $\tan\lambda$ cut, in essense, is an anti-cosmics cut, and 
+its final value needs to be optimized. The cut on the ANN scose selects well reconstucted tracks.
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Final Track quality selection}
+    \label{tab:table1}
+    \begin{tabular}{l|c|c} % <-- Changed to S here.
+      \textbf{Cut variable} & \textbf{Cut value} & \textbf{``N-1'' Efficiency for CE}\\
+      \hline
+      track impact parameter & | D0 | < 100 mm           &   0.990    \\
+      track dip angle        & $ 0.5< \tan \lambda < 1.$ &   0.909    \\
+      TRQ ANN score          & $S_{TRQ} > 0.2$            &   0.901    \\
+    \end{tabular}
+  \end{center}
+\end{table}
+
+Table \ref{table:ce_trq_efficiency_vs_pileup}
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Efficiency for different levels of pile-up occupancy}
+    \label{tab:table1}
+    \begin{tabular}{l|c} % <-- Changed to S here.
+      \textbf{pileup} &  \textbf{Efficiency}\\
+      \hline
+      single track CE MC      &   0.8x    \\
+      CE+1-batch pileup       &   0.8x    \\
+      CE+2-batch pileup       &   0.8x    \\
+    \end{tabular}
+  \end{center}
+\caption{
+  \label{table:ce_trq_efficiency_vs_pileup} 
+  CE track selection efficiency for different levels of pileup. 
+  {\color{red} \bf require MC energy > 103 MeV - fix - need MC energy at the tracker front}
+}
+\end{table}
+
+
+
+
+

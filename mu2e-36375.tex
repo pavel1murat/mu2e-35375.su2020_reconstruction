@@ -55,8 +55,9 @@
 % for portability, make sure all commands are included locally
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\include{commands}
-\newcommand {\ra}        {\rightarrow}
+\newcommand {\kmax}            {\mbox{$k_{\rm max}$}}
 \newcommand {\mumemconv}[1][A] {\mbox{$\mu^- \textrm{#1} \rightarrow e^- \textrm{#1}$}}
+
 % Define a relay to have 2 default arguments instead of limit of 1
 \newcommand {\mumepconv}[1][A] {%
   \def\ArgI{{#1}}%store the first argument
@@ -64,10 +65,12 @@
 }
 \newcommand \mumepconvRelay[1][A]  {\mbox{$\mu^- \textrm{\ArgI} \rightarrow e^+ \textrm{#1}$}}
 
+\newcommand {\ra}        {\rightarrow}
+\newcommand {\red}       {\color{red}}
+
 \newcommand {\Pb}[1]     {\mbox{$\rm ^{#1}Pb$}}                 % isotopes of lead
 \newcommand {\Au}[1]     {\mbox{$\rm ^{#1}Au$}}                 % isotopes of gold
 \newcommand {\Ir}[1]     {\mbox{$\rm ^{#1}Ir$}}                 % isotopes of iridium
-\newcommand {\kmax}      {\mbox{$k_{\rm max}$}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
@@ -125,6 +128,8 @@
 \include{track_quality}
 
 \include{particle_identification}
+
+\include{to_be_investigated}
 
 \bibliographystyle{unsrtnat}
 \bibliography{mu2e_internal_notes,clfv,dio,radiative_muon_capture}

@@ -2,11 +2,22 @@
 // HistDir and FiguresDir have to be defined before init_local_files.C
 //
 // fig  111: trk_276/dPf - DIO-weighted dPf for tracks with P > 103.6 MeV/c,
+// fig  116: comparison of trk_214/dPf and trk_122/dPf - same efficiency
+//
+// fig  200-299 - track ID 
+//
+// fig  300-399 - particle (e/mu) ID 
 //
 ///////////////////////////////////////////////////////////////////////////////
-const char* FiguresDir         = "/projects/mu2e/app/users/murat/notes/mu2e-36375.su2020_reconstruction/figures";
-const char* su2020_HistDir     = "/projects/mu2e/hist/su2020";
+const char* Mu2eNotesDir        = "/projects/mu2e/app/users/murat/notes";     // mu2egpvm*
+const char* Mu2eHistDir         = "/projects/mu2e/data/users/murat/hist";     // mu2egpvm*
 
+const char* NoteRepo            = "mu2e-36375.su2020_reconstruction";
+
+char  FiguresDir    [500] = "";
+char  su2020_HistDir[500] = "";
+
+#include <stdio.h>
 #include <string.h>
 #include "Stntuple/scripts/stn_catalog.hh"
 #include "Stntuple/scripts/plot_hist_1D.C"
@@ -14,22 +25,35 @@ const char* su2020_HistDir     = "/projects/mu2e/hist/su2020";
 
 #include "murat/scripts/fit_asymm_gauss.C"
 
-stn_catalog*   catalog;
+stn_catalog*   catalog;           // has to be global
 
 #include "init_local.C"
-
+//-----------------------------------------------------------------------------
+// real [machine-dependent] values of Mu2eNotesDir and Mu2eHistDir 
+// should be defined in .rootrc
+// it is assumed that the note has been checed out into $mu2e.NotesDir/$NoteRepo
+// and all needed histograms are located in $mu2e.HistDir/su2020
 //-----------------------------------------------------------------------------
 void init() {
-  catalog = new stn_catalog("my");
-  
   stn_book* book;
 
+  const char* notes_dir = gEnv->GetValue("mu2e.NotesDir",Mu2eNotesDir);
+  sprintf(FiguresDir,"%s/%s/figures",notes_dir,NoteRepo);
+
+  const char* hist_dir = gEnv->GetValue("mu2e.HistDir",Mu2eHistDir);
+  sprintf(su2020_HistDir,"%s/su2020",hist_dir);
+  
+
+  catalog = new stn_catalog("my");
+  
   book = new stn_book("su2020",su2020_HistDir);
   init_local(book);
   catalog->AddBook(book);
-
+  
   printf(" after init_local\n");
 }
+
+#include "plot_pid.C"
 
 //-----------------------------------------------------------------------------
 void plot(int Figure, int Print = 0) {
@@ -37,6 +61,10 @@ void plot(int Figure, int Print = 0) {
 
   init();
 
+  if ((Figure >= 300) && (Figure < 400)) plot_pid(Figure,Print);
+//-----------------------------------------------------------------------------
+// fig    1: trk_200/dPf - DIO-weighted dPf for tracks with P > 103.6 MeV/c
+//-----------------------------------------------------------------------------
   if      (Figure == 1) {
    
     const char* dsid    = "su2020.su_stntuple_p1_000_ele00";
@@ -205,13 +233,14 @@ void plot(int Figure, int Print = 0) {
     if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
   }
 //-----------------------------------------------------------------------------
-// fig  114: comparison of trk_214/dPf and trk_126/dPf
+// fig  114: comparison of trk_214/dPf and trk_126/dPf - same background
 //-----------------------------------------------------------------------------
   if      (Figure == 114) {
     const char* dsid    = "su2020.cele0s51b2";
     const char* ana_job = "track_comp_use_mva_ffff_1070";
 
     hd[0]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_214/dpf");
+    hd[0].fNewName     = "DAR_MVA > 0.2";
     hd[0].fYLogScale   = 1;
     hd[0].fRebin       = 2;
     hd[0].fXAxisTitle  = "#Delta P, MeV/c";
@@ -227,9 +256,10 @@ void plot(int Figure, int Print = 0) {
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_cele0s51b2_track_comp_ffff_1070_trk_214_vs_126_dpf",Figure);
 			      
-    hd[0].fPlotLabel   = " ";
+    hd[0].fPlotLabel   = "dataset: cele0s51b2";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_126/dpf");
+    hd[1].fNewName     = "DAP_MVA > 0.8";
     hd[1].fRebin       = 2;
     hd[1].fDrawOpt     = "hist";
     // hd[1].fMarkerStyle = 20;
@@ -249,7 +279,7 @@ void plot(int Figure, int Print = 0) {
     if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
   }
 //-----------------------------------------------------------------------------
-// fig  115: comparison of trk_217/dPf and trk_126/dPf
+// fig  115: comparison of trk_216/dPf and trk_126/dPf
 //-----------------------------------------------------------------------------
   if      (Figure == 115) {
     const char* dsid    = "su2020.cele0s51b2";
@@ -300,6 +330,7 @@ void plot(int Figure, int Print = 0) {
     const char* ana_job = "track_comp_use_mva_ffff_1070";
 
     hd[0]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_214/dpf");
+    hd[0].fNewName     = "DAR_MVA > 0.2";
     hd[0].fYLogScale   = 1;
     hd[0].fRebin       = 2;
     hd[0].fXAxisTitle  = "#Delta P, MeV/c";
@@ -314,10 +345,11 @@ void plot(int Figure, int Print = 0) {
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_cele0s51b2_track_comp_ffff_1070_trk_214_vs_122_dpf",Figure);
 			      
-    hd[0].fPlotLabel   = " ";
+    hd[0].fPlotLabel   = "dataset: cele0s51b2";
     hd[0].fDrawOpt     = "hist";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_122/dpf");
+    hd[1].fNewName     = "PAR_MVA > 0.4";
     hd[1].fRebin       = 2;
     //    hd[1].fMarkerStyle = 20;
     //    hd[1].fMarkerColor = kBlue+2;
