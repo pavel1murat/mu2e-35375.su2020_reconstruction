@@ -27,7 +27,7 @@ char  su2020_HistDir[500] = "";
 
 stn_catalog*   catalog;           // has to be global
 
-#include "init_local.C"
+#include "init_local_datasets.C"
 
 #include "plot_tid.C"                     // track quality ID
 #include "plot_pid.C"                     // paerticle (e/mu) separation
@@ -50,7 +50,7 @@ void init() {
   catalog = new stn_catalog("my");
   
   book = new stn_book("su2020",su2020_HistDir);
-  init_local(book);
+  init_local_datasets(book);
   catalog->AddBook(book);
   
   printf(" after init_local\n");

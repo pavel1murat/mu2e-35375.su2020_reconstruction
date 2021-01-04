@@ -184,7 +184,6 @@ training plots :
   }
 \end{figure}
 
-
 PID preselection cuts (ele00s61b0), for reference:
 
 \begin{table}[h!]
@@ -194,32 +193,34 @@ PID preselection cuts (ele00s61b0), for reference:
     \begin{tabular}{l|c|c} % <-- Changed to S here.
       \textbf{Cut}                    & \textbf{N events after } & \textbf{Efficiency }\\
       \hline
-      total number of tracks          & 343530           &            \\
+      Number generated events         & 1000000          &            \\
+      total number of tracks          &  329715          &   0.330    \\
       \hline
-      track passes the selection cuts & 202167           &   0.588    \\
-      cluster $E > 10 MeV$            & 193204           &   0.956    \\
-      $P > 100$                       & 191012           &   0.989    \\
-      $|DR| < 100$ mm                 & 178866           &   {\color{red} \bf 0.936}    \\
-      $|DT| < 10$ ns                  & 178866           &   1.0      \\
-      $-50 < dz < 250$                & 176619           &   0.987    \\
-      $ E/P < 1.2$                    & 176619           &   1.0      \\
-      $PID >0.5$                      & 175310           &   0.993    \\
-    \end{tabular}
+      track passes TID cuts           &  193252          &   0.586    \\
+      $P > 100$                       &  178078          &   0.921    \\
+      $|DR| < 100$ mm                 &  167028          &   0.938    \\
+      $|DT| < 10$ ns                  &  167028          &   1.0      \\
+      $-50 < dz < 250$                &  164951          &   0.988    \\
+      $ E/P < 1.2$                    &  164884          &   1.000    \\
+      \hline
+      $PID >0.5$                      &  163543          &   0.992    \\
+   \end{tabular}
   \end{center}
   \caption{
-    PID preselection cuts (ele00s61b0) and efficiency for {\bf ele00s61b0} electrons 
+    PID preselection cuts (ele00s61b0) and efficiency for {\bf cele0s51b1} electrons 
   }
 \end{table}
 
-About 6.5\% of all events with tracks and clusters don't have a good track fit, are rejected.
-this needs to be investigated.
+Total efficiency of the PID preselection cuts - 0.926. 
+
+Out of that, approximately, 0.958 comes from the requirement of a calorimeter cluster E > 10 MeV to be reconstructed.
+
+Thus, for events with P>100 and a reconstructed cluster, efficiency of the PID preselection - 0.967.
 
 for electron events with the reconstructed track momentum $P > 100$ MeV/c, passing the preselections, 
 the PID efficiency is 0.993
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 Efficiency for muon events passing the same preselections: 
 
 \begin{itemize}
@@ -231,5 +232,54 @@ Efficiency for muon events passing the same preselections:
 
 which is about 0.8\%.
 
-Contributing to muon mis-identification are decays of stopped muons with in the calorimeter, early part of the exponential, 
-in which the electron energy is counted as the part of the cluster energy
+Contributing to muon mis-identification are decays of stopped muons with in the calorimeter, 
+early part of the decay timing exponential, in which the electron energy is counted as the part 
+of the cluster energy. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection { Electrons, failing the PID selection} 
+
+Figure \ref{fig:electrons_failing_pid} compares distributions in some ID variables for electrons 
+passing and failing the PID cuts.
+
+Although only 0.8\% Of events are in question, understanding of the ANN failures could help finding 
+reconstruction problems.
+
+Of special interest seems to be the spike in the distribution in R(max)
+
+\begin{figure}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00310_pid_emuana_trk_110_vs_111_tch_dr}
+      % }
+    };
+    \node[anchor=south west,inner sep=0] at (7.5,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00311_pid_emuana_trk_110_vs_111_ep}
+      % }
+    };
+    \node[anchor=south west,inner sep=0] at (0,-6.5) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00312_pid_emuana_trk_110_vs_111_rmax}
+      % }
+    };
+    \node[anchor=south west,inner sep=0] at (7.5,-6.5) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00313_pid_emuana_trk_110_vs_111_tch_dt}
+      % }
+    };
+    % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+  \end{tikzpicture}
+  \captionof{figure} {
+    \label{fig:electrons_failing_pid}
+    % \caption{
+    Distribution in the PID variables for electrons passing the PID, muons, failing the PID, and electrons failing the PID
+  }
+\end{figure}

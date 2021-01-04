@@ -10,31 +10,9 @@
 #include "Stntuple/scripts/stn_book.hh"
 
 //-----------------------------------------------------------------------------
-// get histogram file for a given dataset ID
+// init datasets associated with the given book
 //-----------------------------------------------------------------------------
-hist_file_t* hist_data_t::get_hist_file(const char* DsID, const char* JobName) {
-  printf("[get_hist_file]: dsid: %s  job: %s fBook = %p\n",DsID,JobName,fBook);
-  
-  hist_file_t* hf = fBook->FindHistFile(DsID,"",JobName);
-  
-  if (hf == nullptr) {
-    printf(" get_hist_file ERROR: cant find hist file for dsid=%s, job=%s; return NULL\n",
-	   DsID,JobName);
-  }
-  return hf;
-}
-
-//-----------------------------------------------------------------------------
-// get dataset by the dataset ID
-// intention here is to hide the book internals from plot.C
-//-----------------------------------------------------------------------------
-stn_dataset_t* get_dataset(stn_book* Book, const char* DsID) {
-  stn_dataset_t* d = Book->FindDataset(DsID);
-  return d;
-}
-
-//-----------------------------------------------------------------------------
-void init_local(stn_book* Book) {
+void init_local_datasets(stn_book* Book) {
   stn_dataset_t* d;
   hist_file_t*   hf;
 //-----------------------------------------------------------------------------
@@ -53,6 +31,7 @@ void init_local(stn_book* Book) {
     hf = Book->NewHistFile("su2020.cele0s51b1" ,"","track_comp_use_mva_0070_1070");
     hf = Book->NewHistFile("su2020.cele0s51b1" ,"","track_comp_use_mva_ffff_1070");
     hf = Book->NewHistFile("su2020.cele0s51b1" ,"","su2020_track_ana_dar_11_1070");
+    hf = Book->NewHistFile("su2020.cele0s51b1" ,"","pid_emuana");
 
     d  = Book->NewDataset ("su2020.cele0s51b2" ,"",-1,   1000000); 
     hf = Book->NewHistFile("su2020.cele0s51b2" ,"","track_comp_use_mva_0060_1060");
@@ -112,8 +91,8 @@ void init_local(stn_book* Book) {
     d  = Book->NewDataset ("su2020.mbs00s11b1" ,"",-1,   200); 
     hf = Book->NewHistFile("su2020.mbs00s11b1" ,"","straw_hit_ana"  );
 
-    d  = Book->NewDataset ("su2020.mumi0s61b0" ,"",-1,       1000000);     // PID dataset
-    hf = Book->NewHistFile("su2020.mumi0s61b0" ,"","pid_emuana_1070");
+    d  = Book->NewDataset ("su2020.mumi0s61b0" ,"",-1,  1000000);     // PID dataset
+    hf = Book->NewHistFile("su2020.mumi0s61b0" ,"","pid_emuana");
 
     d  = Book->NewDataset ("su2020.pbar0s11b0" ,"",-1,2000000000); // Giovanni pbars at VD91
     hf = Book->NewHistFile("su2020.pbar0s11b0" ,"","spmc_ana"    );

@@ -12,6 +12,13 @@
 // fig  304 trk_101/tch_dz - electrons vs muons
 // fig  305 trk_101/tch_dr - electrons vs muons
 // fig  306 trk_101/path   - electrons vs muons
+//
+// Figure 310: PID<0.5 vs PID>0.5
+// ----------
+// fig  310: cele0s51b1 trk_110 vs trk_111 TCH_DR 
+// fig  311: cele0s51b1 trk_110 vs trk_111 E/P
+// fig  312: cele0s51b1 trk_110 vs trk_111 rmax
+// fig  313: cele0s51b1 trk_110 vs trk_111 TCH_DT
 //-----------------------------------------------------------------------------
 void plot_pid(int Figure, int Print = 0) {
   hist_data_t hd[10];
@@ -352,6 +359,230 @@ void plot_pid(int Figure, int Print = 0) {
     hd[1].fStatBoxXMin = 0.45; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.70; hd[1].fStatBoxYMax=0.65;
    
     int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  310: cele0s51b1 trk_110 vs trk_111 TCH_DR
+//-----------------------------------------------------------------------------
+  if      (Figure == 310) {
+   
+    const char* dsid   = "su2020.cele0s51b1";
+    const char* dsid2  = "su2020.mumi0s61b0";
+    const char* job    = "pid_emuana";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,job,"EmuAna","trk_110/tch_dr");
+    hd[0].fNewName     = "DR, PID>0.5";
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "DR, mm";
+    hd[0].fYMax        = 10000;
+    // hd[0].fXMin        = -1.;
+    // hd[0].fXMax        =  1.1;
+    hd[0].fLabel       = "electrons, PID > 0.5";
+    hd[0].fYLogScale   = 0;
+    hd[0].fMarkerColor = kRed+1;
+    hd[0].fDrawOpt     = "hist";
+    hd[0].fStatBoxXMin = 0.70; hd[0].fStatBoxYMin = 0.75; hd[0].fStatBoxXMax = 0.90; hd[0].fStatBoxYMax=0.90;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_pid_emuana_trk_110_vs_111_tch_dr",Figure);
+
+    hd[0].fLegendXMin = 0.70; hd[0].fLegendYMin = 0.30; hd[0].fLegendXMax = 0.90; hd[0].fLegendYMax=0.40;
+			      
+    hd[0].fPlotLabel   = dsid;
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,"EmuAna","trk_211/tch_dr");
+    hd[1].fNewName     = "DR, PID<0.5";
+    hd[1].fLabel       = "muons    , PID < 0.5";
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fLineWidth   = 2;
+    hd[1].fDrawOpt     = "hist"; 
+    hd[1].fStatBoxXMin = 0.70; hd[1].fStatBoxYMin = 0.60; hd[1].fStatBoxXMax = 0.90; hd[1].fStatBoxYMax=0.75;
+    hd[1].fScale       = 2;
+
+    hd[2]              = hist_data_t(catalog,"su2020",dsid,job,"EmuAna","trk_111/tch_dr");
+    hd[2].fNewName     = "DR, PID<0.5";
+    hd[2].fLabel       = "electrons, PID < 0.5";
+    hd[2].fLineColor   = kBlue+2;
+    hd[2].fFillColor   = kBlue+2;
+    hd[2].fFillStyle   = 3003;
+    hd[2].fDrawOpt     = "hist"; 
+    hd[2].fStatBoxXMin = 0.70; hd[2].fStatBoxYMin = 0.45; hd[2].fStatBoxXMax = 0.90; hd[2].fStatBoxYMax=0.60;
+    hd[2].fScale       = 2;
+   
+    int nhist = 3;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  311: cele0s51b1 trk_110 vs trk_111 E/P
+//-----------------------------------------------------------------------------
+  if      (Figure == 311) {
+   
+    const char* dsid   = "su2020.cele0s51b1";
+    const char* dsid2  = "su2020.mumi0s61b0";
+    const char* job    = "pid_emuana";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,job,"EmuAna","trk_110/ep");
+    hd[0].fNewName     = "E/P, PID>0.5";
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "DR, mm";
+    hd[0].fYMax        = 12000;
+    // hd[0].fXMin        = -1.;
+    // hd[0].fXMax        =  1.1;
+    hd[0].fLabel       = "electrons, PID > 0.5";
+    hd[0].fYLogScale   = 0;
+    hd[0].fMarkerColor = kRed+1;
+    hd[0].fDrawOpt     = "hist";
+    hd[0].fStatBoxXMin = 0.70; hd[0].fStatBoxYMin = 0.75; hd[0].fStatBoxXMax = 0.90; hd[0].fStatBoxYMax=0.90;
+
+    hd[0].fLegendXMin = 0.70; hd[0].fLegendYMin = 0.30; hd[0].fLegendXMax = 0.90; hd[0].fLegendYMax=0.40;
+			      
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+
+    hd[0].fPlotLabel   = dsid;
+    hd[0].fPlotName    = Form("figure_%05i_pid_emuana_trk_110_vs_111_ep",Figure);
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,"EmuAna","trk_211/ep");
+    hd[1].fNewName     = "E/P, PID<0.5";
+    hd[1].fLabel       = "muons    , PID < 0.5";
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fLineWidth   = 2;
+    hd[1].fDrawOpt     = "hist"; 
+    hd[1].fStatBoxXMin = 0.70; hd[1].fStatBoxYMin = 0.60; hd[1].fStatBoxXMax = 0.90; hd[1].fStatBoxYMax=0.75;
+    hd[1].fScale       = 2;
+
+    hd[2]              = hist_data_t(catalog,"su2020",dsid,job,"EmuAna","trk_111/ep");
+    hd[2].fNewName     = "E/P, PID<0.5";
+    hd[2].fLabel       = "electrons, PID < 0.5";
+    hd[2].fLineColor   = kBlue+2;
+    hd[2].fFillColor   = kBlue+2;
+    hd[2].fFillStyle   = 3003;
+    hd[2].fDrawOpt     = "hist"; 
+    hd[2].fStatBoxXMin = 0.70; hd[2].fStatBoxYMin = 0.45; hd[2].fStatBoxXMax = 0.90; hd[2].fStatBoxYMax=0.60;
+    hd[2].fScale       = 2;
+   
+    int nhist = 3;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  312: cele0s51b1 trk_110 vs trk_111 rmax
+//-----------------------------------------------------------------------------
+  if      (Figure == 312) {
+   
+    const char* dsid   = "su2020.cele0s51b1";
+    const char* dsid2  = "su2020.mumi0s61b0";
+    const char* job    = "pid_emuana";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,job,"EmuAna","trk_110/rmax");
+    hd[0].fNewName     = "electrons, PID>0.5";
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "Rmax, mm";
+    hd[0].fYMax        = 10000.;
+    hd[0].fXMin        = 400.;
+    hd[0].fXMax        = 800;
+    hd[0].fLabel       = "electrons, PID>0.5";
+    hd[0].fYLogScale   = 0;
+    hd[0].fMarkerColor = kRed+1;
+    hd[0].fDrawOpt     = "hist";
+    hd[0].fStatBoxXMin = 0.70; hd[0].fStatBoxYMin = 0.75; hd[0].fStatBoxXMax = 0.90; hd[0].fStatBoxYMax=0.90;
+
+    hd[0].fLegendXMin = 0.35; hd[0].fLegendYMin = 0.40; hd[0].fLegendXMax = 0.55; hd[0].fLegendYMax=0.60;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_pid_emuana_trk_110_vs_111_rmax",Figure);
+			      
+    hd[0].fPlotLabel   = dsid;
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,"EmuAna","trk_211/rmax");
+    hd[1].fNewName     = "muons, PID<0.5";
+    hd[1].fLabel       = "muons, PID<0.5";
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fDrawOpt     = "hist"; 
+    hd[1].fStatBoxXMin = 0.70; hd[1].fStatBoxYMin = 0.60; hd[1].fStatBoxXMax = 0.90; hd[1].fStatBoxYMax=0.75;
+    hd[1].fScale       = 2;
+   
+    hd[2]              = hist_data_t(catalog,"su2020",dsid,job,"EmuAna","trk_111/rmax");
+    hd[2].fNewName     = "electrons, PID<0.5";
+    hd[2].fLabel       = "electrons, PID<0.5";
+    hd[2].fLineColor   = kBlue+2;
+    hd[2].fFillColor   = kBlue+2;
+    hd[2].fFillStyle   = 3003;
+    hd[2].fDrawOpt     = "hist"; 
+    hd[2].fStatBoxXMin = 0.70; hd[2].fStatBoxYMin = 0.45; hd[2].fStatBoxXMax = 0.90; hd[2].fStatBoxYMax=0.60;
+    hd[2].fScale       = 2;
+
+    int nhist = 3;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  313: cele0s51b1 trk_110 vs trk_111 TCH_DT
+//-----------------------------------------------------------------------------
+  if      (Figure == 313) {
+   
+    const char* dsid   = "su2020.cele0s51b1";
+    const char* dsid2  = "su2020.mumi0s61b0";
+    const char* job    = "pid_emuana";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,job,"EmuAna","trk_110/tch_dt");
+    hd[0].fNewName     = "electrons, PID>0.5";
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "Dt, ns";
+    hd[0].fYMin        = 0.1;
+    hd[0].fYMax        = 16000;
+    hd[0].fXMin        = -8.;
+    hd[0].fXMax        =  4;
+    hd[0].fLabel       = "electrons, PID>0.5";
+    hd[0].fYLogScale   = 0;
+    hd[0].fMarkerColor = kRed+1;
+    hd[0].fDrawOpt     = "hist";
+    hd[0].fStatBoxXMin = 0.70; hd[0].fStatBoxYMin = 0.75; hd[0].fStatBoxXMax = 0.90; hd[0].fStatBoxYMax=0.90;
+
+    hd[0].fLegendXMin = 0.35; hd[0].fLegendYMin = 0.40; hd[0].fLegendXMax = 0.55; hd[0].fLegendYMax=0.60;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_pid_emuana_trk_110_vs_111_tch_dt",Figure);
+			      
+    hd[0].fPlotLabel   = dsid;
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,"EmuAna","trk_211/tch_dt");
+    hd[1].fNewName     = "muons, PID<0.5";
+    hd[1].fLabel       = "muons, PID<0.5";
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fLineWidth   = 2;
+    hd[1].fDrawOpt     = "hist"; 
+    hd[1].fStatBoxXMin = 0.70; hd[1].fStatBoxYMin = 0.60; hd[1].fStatBoxXMax = 0.90; hd[1].fStatBoxYMax=0.75;
+    hd[1].fScale       = 2;
+   
+    hd[2]              = hist_data_t(catalog,"su2020",dsid,job,"EmuAna","trk_111/tch_dt");
+    hd[2].fNewName     = "electrons, PID<0.5";
+    hd[2].fLabel       = "electrons, PID<0.5";
+    hd[2].fLineColor   = kBlue+2;
+    hd[2].fFillColor   = kBlue+2;
+    hd[2].fFillStyle   = 3003;
+    hd[2].fDrawOpt     = "hist"; 
+    hd[2].fStatBoxXMin = 0.70; hd[2].fStatBoxYMin = 0.45; hd[2].fStatBoxXMax = 0.90; hd[2].fStatBoxYMax=0.60;
+    hd[2].fScale       = 2;
+
+    int nhist = 3;
     plot_hist_1d(hd,nhist,-1);
 
     hd[0].fCanvas->Modified();
