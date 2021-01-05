@@ -58,48 +58,49 @@ We didn't consider pathological cases with muons passing electron reconstruction
 the muon one, and assume the probability of that to be negligibly small.
 
 \begin{figure}
-  \label{fig:pid_training_1}
+\hspace{-1.4in}
 \begin{tikzpicture}
   \node[anchor=south west,inner sep=0] at (-1,0.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00300_pid_emuana_1070_trk_101_ep}
+    \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00300_pid_emuana_1070_trk_101_ep}
     % }
   };
-  \node[anchor=south west,inner sep=0] at (7.5,0.) {
+  \node[anchor=south west,inner sep=0] at (9.5,0.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00301_pid_emuana_1070_trk_101_ncr}
+    \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00301_pid_emuana_1070_trk_101_ncr}
     % }
   };
-  \node[anchor=south west,inner sep=0] at (-1,-5.5) {
+  \node[anchor=south west,inner sep=0] at (-1,-6.5) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00302_pid_emuana_1070_trk_101_seed_fr}
+    \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00302_pid_emuana_1070_trk_101_seed_fr}
     % }
   };
-  \node[anchor=south west,inner sep=0] at (7.5,-5.5) {
+  \node[anchor=south west,inner sep=0] at (9.5,-6.5) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00303_pid_emuana_1070_trk_101_tch_dt}
+    \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00303_pid_emuana_1070_trk_101_tch_dt}
     % }
   };
-  \node[anchor=south west,inner sep=0] at (-1,-11.) {
+  \node[anchor=south west,inner sep=0] at (-1,-13.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00304_pid_emuana_1070_trk_101_tch_dz}
+    \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00304_pid_emuana_1070_trk_101_tch_dz}
     % }
   };
-  \node[anchor=south west,inner sep=0] at (7.5,-11.) {
+  \node[anchor=south west,inner sep=0] at (9.5,-13.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00305_pid_emuana_1070_trk_101_tch_dr}
+    \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00305_pid_emuana_1070_trk_101_tch_dr}
     % }
   };
   % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
 \end{tikzpicture}
 % \captionof{figure} {
 \caption{
+  \label{fig:pid_training_1}
   variables used in PID MVA training
 }
 \end{figure}
@@ -122,10 +123,10 @@ Training preselection cuts:
 \begin{figure}
   \label{fig:pid_training_2}
   \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (-1,0.) {
+    \node[anchor=south west,inner sep=0] at (0,0.) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       % \makebox[\textwidth][c] {
-      \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00306_pid_emuana_1070_trk_101_path}
+      \includegraphics[width=0.8\textwidth]{figures/pdf/figure_00306_pid_emuana_1070_trk_101_path}
       % }
     };
     % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
@@ -141,17 +142,18 @@ training plots :
 
 \begin{figure}
   \label{fig:pid_training_2}
+\hspace{-1.4in}
   \begin{tikzpicture}
-    \node[anchor=south west,inner sep=0] at (-2,0.) {
+    \node[anchor=south west,inner sep=0] at (0,0.) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       % \makebox[\textwidth][c] {
-      \includegraphics[width=0.60\textwidth]{figures/pdf/pid_mva_overtrain_mlp}
+      \includegraphics[width=0.70\textwidth]{figures/pdf/pid_mva_overtrain_mlp}
       % }
     };
-    \node[anchor=south west,inner sep=0] at (7.5,0.) {
+    \node[anchor=south west,inner sep=0] at (10,0.5) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       % \makebox[\textwidth][c] {
-      \includegraphics[width=0.60\textwidth]{figures/pdf/pid_mva_rejection_mlp}
+      \includegraphics[width=0.70\textwidth]{figures/pdf/pid_mva_rejection_mlp}
       % }
     };
     % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
@@ -250,29 +252,30 @@ reconstruction problems.
 Of special interest seems to be the spike in the distribution in R(max)
 
 \begin{figure}
+\hspace{-1.4in}
   \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] at (0,0.) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       % \makebox[\textwidth][c] {
-      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00310_pid_emuana_trk_110_vs_111_tch_dr}
+      \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00310_pid_emuana_trk_110_vs_111_tch_dr}
       % }
     };
-    \node[anchor=south west,inner sep=0] at (7.5,0.) {
+    \node[anchor=south west,inner sep=0] at (10.3,0.) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       % \makebox[\textwidth][c] {
-      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00311_pid_emuana_trk_110_vs_111_ep}
+      \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00311_pid_emuana_trk_110_vs_111_ep}
       % }
     };
-    \node[anchor=south west,inner sep=0] at (0,-6.5) {
+    \node[anchor=south west,inner sep=0] at (0,-7.0) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       % \makebox[\textwidth][c] {
-      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00312_pid_emuana_trk_110_vs_111_rmax}
+      \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00312_pid_emuana_trk_110_vs_111_rmax}
       % }
     };
-    \node[anchor=south west,inner sep=0] at (7.5,-6.5) {
+    \node[anchor=south west,inner sep=0] at (10.3,-7.0) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       % \makebox[\textwidth][c] {
-      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00313_pid_emuana_trk_110_vs_111_tch_dt}
+      \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00313_pid_emuana_trk_110_vs_111_tch_dt}
       % }
     };
     % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
@@ -280,6 +283,7 @@ Of special interest seems to be the spike in the distribution in R(max)
   \captionof{figure} {
     \label{fig:electrons_failing_pid}
     % \caption{
-    Distribution in the PID variables for electrons passing the PID, muons, failing the PID, and electrons failing the PID
+    Distributions of the PID variables for electrons passing the PID, muons failing the PID, and electrons failing the PID.
+    The PID selection used is $S_{PID} > 0.5$, where $S_{PID}$ is the value of the PID ANN score variable
   }
 \end{figure}
