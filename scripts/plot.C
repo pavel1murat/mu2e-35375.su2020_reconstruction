@@ -3,6 +3,10 @@
 //
 // fig  111: trk_276/dPf - DIO-weighted dPf for tracks with P > 103.6 MeV/c,
 // fig  116: comparison of trk_214/dPf and trk_122/dPf - same efficiency
+// fig  121: conversions vs dio 
+// fig  122: dio two batch
+// fig  123: dio one batch
+// fig  124: dio 1batch and 2batch,scaled to gen event number
 //
 // fig  200-299 - track ID 
 //
@@ -23,7 +27,7 @@ char  su2020_HistDir[500] = "";
 #include "Stntuple/scripts/plot_hist_1D.C"
 #include "Stntuple/scripts/plot_hist_2D.C"
 
-#include "murat/scripts/fit_asymm_gauss.C"
+#include "su2020/ana/scripts/fit_asymm_gauss.C"
 
 stn_catalog*   catalog;           // has to be global
 
@@ -370,5 +374,184 @@ void plot(int Figure, int Print = 0) {
 
     if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
   }
-  
+
+//-----------------------------------------------------------------------------
+// fig  121: conversions vs dio 
+//-----------------------------------------------------------------------------
+  if      (Figure == 121) {
+    const char* dsid    = "su2020.cele0s61b2";
+    const char* dsid2   = "su2020.fele2s51b1";
+    const char* ana_job = "su2020_track_ana_12_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_10_1070","su2020_TrackAna","trk_2010/p");
+    hd[0].fNewName     = "DAR_MVA > 0.2";
+    hd[0].fYLogScale   = 1;
+    hd[0].fScale       = 1/1.7*1.e-18;
+    hd[0].fRebin       = 2;
+    hd[0].fXAxisTitle  = "#Delta P, MeV/c";
+    hd[0].fXMin        = 102.;
+    hd[0].fXMax        = 106.;
+    hd[0].fLabel       = "#Delta P";
+    hd[0].fLineColor   = kRed+2;
+    hd[0].fDrawOpt     = "pe";
+    hd[0].fMarkerStyle = 20;
+    hd[0].fMarkerSize  = 0.8;
+    hd[0].fMarkerColor = kRed+2;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_cele0s51b2_track_comp_ffff_1070_trk_214_vs_126_dpf",Figure);
+			      
+    hd[0].fPlotLabel   = "dataset: cele0s61b2(red) and fele2s51b1(blue)";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid2,"su2020_track_ana_12_1070","su2020_TrackAna","trk_2013/p");
+    hd[1].fNewName     = "DAR_MVA > 0.8";
+    hd[1].fRebin       = 2;
+    hd[1].fDrawOpt     = "hist";
+    // hd[1].fScale       = 1;        // 2:normalize to the same area as hd[0]
+    hd[0].fDrawOpt     = "pe";
+    // hd[1].fMarkerStyle = 20;
+    // hd[1].fMarkerColor = kBlue+2;
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+    
+    int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  122:  dio two batch 
+//-----------------------------------------------------------------------------
+  if      (Figure == 122) {
+    const char* dsid   = "su2020.fele2s51b1";
+    const char* ana_job = "su2020_track_ana_12_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_12_1070","su2020_TrackAna","trk_2013/p");
+    hd[0].fNewName     = "DAR_MVA > 0.8";
+    hd[0].fYLogScale   = 1;
+    hd[0].fScale       = 2.106*1.e12/10;
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "#Delta P, MeV/c";
+    hd[0].fYAxisTitle  = "N Events per 50keV/c";
+    hd[0].fXMin        = 103.875;
+    hd[0].fXMax        = 104.875;
+    hd[0].fLabel       = "dio_2batch";
+    hd[0].fLabelXMin   = 0.15;
+    hd[0].fLineColor   = kRed+2;
+    hd[0].fDrawOpt     = "pe";
+    hd[0].fMarkerStyle = 20;
+    hd[0].fMarkerSize  = 0.8;
+    hd[0].fMarkerColor = kRed+2;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_fele2s51b1_track_ana_ffff_1070_trk_2013_p",Figure);
+    hd[0].fPlotLabel   = "dataset:fele2s51b1;Scaled to 3.6e20 POT";
+    
+    int nhist = 1;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  123:  dio one batch 
+//-----------------------------------------------------------------------------
+  if      (Figure == 123) {
+    const char* dsid   = "su2020.fele2s51b1";
+    const char* ana_job = "su2020_track_ana_12_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_12_1070","su2020_TrackAna","trk_2012/p");
+    hd[0].fNewName     = "DAR_MVA > 0.8";
+    hd[0].fYLogScale   = 1;
+    hd[0].fScale       = 2.106*1.e12/10;
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "#Delta P, MeV/c";
+    hd[0].fYAxisTitle  = "N Events per 50keV/c";
+    hd[0].fXMin        = 103.875;
+    hd[0].fXMax        = 104.875;
+    hd[0].fLabel       = "dio_1batch";
+    hd[0].fLabelXMin   = 0.15;
+    hd[0].fLineColor   = kRed+2;
+    hd[0].fDrawOpt     = "pe";
+    hd[0].fMarkerStyle = 20;
+    hd[0].fMarkerSize  = 0.8;
+    hd[0].fMarkerColor = kRed+2;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_fele2s51b1_track_ana_ffff_1070_trk_2013_p",Figure);
+    hd[0].fPlotLabel   = "dataset:fele2s51b1;Scaled to 3.6e20 POT";
+    
+    int nhist = 1;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  124:  dio one batch vs two batch; scaled to gen number 
+//-----------------------------------------------------------------------------
+  if      (Figure == 124) {
+    const char* dsid   = "su2020.fele2s51b1";
+    const char* ana_job = "su2020_track_ana_12_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_12_1070","su2020_TrackAna","trk_2012/p");
+    hd[0].fNewName     = "DAR_MVA > 0.8";
+    hd[0].fYLogScale   = 1;
+    hd[0].fScale       = 1;
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "#Delta P, MeV/c";
+    hd[0].fYAxisTitle  = "N Events per 50keV/c";
+    hd[0].fXMin        = 103.875;
+    hd[0].fXMax        = 104.875;
+    hd[0].fLabel       = "dio_1batch";
+    hd[0].fLabelXMin   = 0.15;
+    hd[0].fLineColor   = kRed+2;
+    hd[0].fDrawOpt     = "pe";
+    hd[0].fMarkerStyle = 20;
+    hd[0].fMarkerSize  = 0.8;
+    hd[0].fMarkerColor = kRed+2;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_fele2s51b1_track_ana_ffff_1070_trk_2013_p",Figure);
+    hd[0].fPlotLabel   = "dataset:fele2s51b1;1e7 flat e-";
+    
+    hd[1]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_12_1070","su2020_TrackAna","trk_2013/p");
+    hd[1].fNewName     = "DAR_MVA > 0.8";
+    hd[1].fRebin       = 1;
+    hd[1].fDrawOpt     = "hist";
+    hd[1].fScale       = 1;        // 2:normalize to the same area as hd[0]
+    hd[1].fLabel       = "dio_2batch";
+    hd[1].fDrawOpt     = "pe";
+    // hd[1].fMarkerStyle = 20;
+    // hd[1].fMarkerColor = kBlue+2;
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+
+    int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
 }
