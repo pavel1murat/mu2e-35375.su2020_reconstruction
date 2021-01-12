@@ -4,9 +4,12 @@
 //-----------------------------------------------------------------------------
 // Figures : 200-299
 //
-// fig  200: ID_1/D0   for cele0s51b0
-// fig  201: ID_1/tdip for cele0s51b0
-// fig  202: ID_1/trq  for cele0s51b0
+// fig  200: ID_1/D0     cele0s51b0
+// fig  201: ID_1/tdip   cele0s51b0
+// fig  202: ID_1/trq    cele0s51b0
+// ...
+// fig  222: ID_1/trq    cele0s51b2
+// fig  231: trk_200/dpf ele00s51b0/1070 vs pos00s51b0/1070 vs ele00s51b0/170
 //-----------------------------------------------------------------------------
 void plot_tid(int Figure, int Print = 0) {
   hist_data_t hd[10];
@@ -500,6 +503,62 @@ void plot_tid(int Figure, int Print = 0) {
     hd[2].fLabel       = "N cuts";
     hd[2].fLineColor   = kBlue+2;
     hd[2].fFillColor   = kBlue+2;
+    hd[2].fFillStyle   = 3001;
+    hd[2].fDrawOpt     = "hist";
+    hd[2].fStatBoxXMin = 0.65; hd[2].fStatBoxYMin = 0.30; hd[2].fStatBoxXMax = 0.9; hd[2].fStatBoxYMax=0.50;
+    
+    int nhist = 3;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  231: trk_200/dpf ID_1/trq for cele0s51b2
+//-----------------------------------------------------------------------------
+  if      (Figure == 231) {
+    const char* dsid   = "su2020.ele00s61b0";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_mva_test_dar_1070","su2020_TrackAna","trk_200/dpf");
+    hd[0].fNewName     = "e-, MVA: 105 MeV e-";
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "#Delta P";
+    // hd[0].fXMin        = -10.;
+    // hd[0].fXMax        = 10.;
+    hd[0].fLabel       = "e-, MVA: 105 MeV e-";
+    hd[0].fYLogScale   = 1;
+    hd[0].fMarkerColor = kRed+1;
+    // hd[0].fMarkerStyle = 20;
+    // hd[0].fMarkerSize  = 0.8;
+    hd[0].fDrawOpt     = "hist";
+    hd[0].fStatBoxXMin = 0.65; hd[0].fStatBoxYMin = 0.70; hd[0].fStatBoxXMax = 0.9; hd[0].fStatBoxYMax=0.90;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_su2020_mva_test_dar",Figure);
+			      
+    hd[0].fPlotLabel   = "MVA selections: ele00s61b0 vs pos00s51b0";
+    hd[0].fLegendXMin  = 0.15; hd[0].fLegendYMin = 0.555; hd[0].fLegendXMax = 0.35; hd[0].fLegendYMax=0.70;
+
+    const char* dsid2   = "su2020.pos00s51b0";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid2,"su2020_mva_test_dar_1070","su2020_TrackAna","trk_200/dpf");
+    hd[1].fNewName     = "e+, MVA: 105 MeV e-";
+    hd[1].fLabel       = "e+, MVA: 105 MeV e-";
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fLineWidth   = 2;
+    hd[1].fDrawOpt     = "hist";
+    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.50; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.70;
+    
+    hd[2]              = hist_data_t(catalog,"su2020",dsid,"su2020_mva_test_dar_0170","su2020_TrackAna","trk_200/dpf");
+    hd[2].fNewName     = "e-, MVA: 92MeV e+";
+    hd[2].fLabel       = "e-, MVA: 92MeV e+";
+    hd[2].fLineColor   = kBlue-1;
+    hd[2].fFillColor   = kBlue-1;
     hd[2].fFillStyle   = 3001;
     hd[2].fDrawOpt     = "hist";
     hd[2].fStatBoxXMin = 0.65; hd[2].fStatBoxYMin = 0.30; hd[2].fStatBoxXMax = 0.9; hd[2].fStatBoxYMax=0.50;

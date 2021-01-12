@@ -14,18 +14,18 @@ ambiguity resolvers.
 We correct the reconstructed momenta of PAR tracks by 34 keV/c , and DAR tracks - by 30 keV/c.
 
 \begin{figure}
-\hspace{-1.4in}
+\hspace{-0.6in}
 \begin{tikzpicture}
   \node[anchor=south west,inner sep=0] at (0,0.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-      \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00112_fele2s51b1_track_comp_ffff_1070_nocorr_trk_126_dpf}
+      \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00112_fele2s51b1_track_comp_ffff_1070_nocorr_trk_126_dpf}
     %}
   };
   \node[anchor=south west,inner sep=0] at (10,0.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-      \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00113_fele2s51b1_track_comp_ffff_1070_nocorr_trk_214_dpf}
+      \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00113_fele2s51b1_track_comp_ffff_1070_nocorr_trk_214_dpf}
     %}
   };
   % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
@@ -41,6 +41,10 @@ We correct the reconstructed momenta of PAR tracks by 34 keV/c , and DAR tracks 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \section{Track Selections}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{$\mu^- \rightarrow e^-$ Channel}
+
 
 Selection of correctly reconstructed tracks plays a critical role in the search.
 In the Mu2e offline, there are two track fitters which correspond to two different
@@ -90,7 +94,7 @@ The results are shown in Figure ..... .
 Using the CD3 choice of the signal region , 103.85 < p < 104.90 MeV/c, we compared the
 CE reconstruction efficiency of the two methods vs the expected DIO background.
 
-Figure \ref{fig:ann_operational_point_choice} shows the result.
+Figure \ref{fig:mumem_trq_ann_signal_vs_background} shows the result.
 
 Use of the DAR track fits allows to increase acceptance by 4-5\%, while keeping the expected
 background below the level corresponding to PAR fits.
@@ -102,7 +106,7 @@ The operational point corresponds to the cut on the output of DAR ANN $S_{DAR} >
   \node[anchor=south west,inner sep=0] at (0,0.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     \makebox[\textwidth][c] {
-      \includegraphics[width=0.99\textwidth]{figures/pdf/ann_operational_point_choice}
+      \includegraphics[width=0.99\textwidth]{figures/pdf/mumem_trq_ann_signal_vs_background}
     }
   };
   % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
@@ -124,18 +128,18 @@ selections and PAR ANN-based track selection. For the PAR fit, the track selecti
 we show two operational points corresponding to the same efficiency and the same expected DIO background.
 
 \begin{figure}
-\hspace{-1.4in}
+\hspace{-0.6in}
 \begin{tikzpicture}
   \node[anchor=south west,inner sep=0] at (0,0.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00114_cele0s51b2_track_comp_ffff_1070_trk_214_vs_126_dpf}
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00114_cele0s51b2_track_comp_ffff_1070_trk_214_vs_126_dpf}
     % }
   };
   \node[anchor=south west,inner sep=0] at (10,0.) {
     % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
     % \makebox[\textwidth][c] {
-    \includegraphics[width=0.80\textwidth]{figures/pdf/figure_00116_cele0s51b2_track_comp_ffff_1070_trk_214_vs_122_dpf}
+    \includegraphics[width=0.65\textwidth]{figures/pdf/figure_00116_cele0s51b2_track_comp_ffff_1070_trk_214_vs_122_dpf}
     % }
   };
   % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
@@ -184,6 +188,95 @@ suppression in the region [103.85, 104.9] MeV/c was observed.
 Continuing the phase space exploration, we trained an similar ANN with the bato discriminate the tracks for
 $\Delta{P} < 0.25$ MeV/c from tracks with $\Delta{P} > 0.6$ MeV/c. No improvement in the DIO
 suppression in the region [103.85, 104.9] MeV/c was observed. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{$\mu^- \rightarrow e^+$ Channel}
+
+\begin{figure}
+  \hspace{-0.6in}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.6\textwidth]{figures/pdf/mumep_trq_ann_signal_vs_background_lin}
+      % }
+    };
+    \node[anchor=south west,inner sep=0] at (10,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.6\textwidth]{figures/pdf/mumep_trq_ann_signal_vs_background_log}
+      % }
+    };
+    % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+  \end{tikzpicture}
+  % \captionof{figure} {
+  \caption{
+    \label{fig:mumep_trq_ann} 
+    Positron selection - 90 MeV/c
+  }
+\end{figure}
+
+background definition: number of events with $\Delta{P} > 1$ MeV/c.
+Interestingly, that with this background definition, background increases exponentially with the acceptance, 
+as shown in Figure \ref{fig:mumep_trq_ann}
+
+Cut $S_{DAR} > 0.2$ improves the signal acceptance by 10\%, while increasing the background by 15\%.
+Relaxing the cut to $S_{DAR} > 0.15$ adds another 2\% to the CP acceptance, while the background grows 
+much faster and becomes $B_{ANN}/N_{ANN}^{default} = 1.5,$
+
+We tried to train an ANN for PAR tracks, somewhat surprisingly, its performance 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Testing Charge symmetry of the ANN-based track selections}
+
+ANN training doesn't include variables which explicitly depend on the track charge, 
+
+Figure \ref{fig:su2020_mva_test_dar} compares performance of the ANN trained using 
+negative tracks, for e+ of the same energy.
+
+ANN selection is charge-symmetric with an accuracy better than 0.5\%, using AMN trained on 
+92 MeV signal and cutting at the same value reduces efficiency by less than 4\%.
+
+\begin{figure}
+  % \hspace{-0.6in}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      \makebox[\textwidth][c] {
+        \includegraphics[width=0.8\textwidth]{figures/pdf/figure_00231_su2020_mva_test_dar}
+      }
+    };
+    % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+  \end{tikzpicture}
+  % \captionof{figure} {
+  \caption{
+    \label{fig:su2020_mva_test_dar} 
+    Electron and positron selection, 105 MeV , positron selection - 90 MeV/c
+  }
+\end{figure}
+
+Also include selection of 105 MeV electrons with the ANN trained on 90 MeV/c positrons - 
+Figure \ref{fig:mumep_trq_ann_1070_vs_0170}.
+
+
+\begin{figure}
+  % \hspace{-0.6in}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      \makebox[\textwidth][c] {
+        \includegraphics[width=0.8\textwidth]{figures/pdf/mumem_trq_ann_1070_vs_0170}
+      }
+    };
+    % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
+  \end{tikzpicture}
+  % \captionof{figure} {
+  \caption{
+    \label{fig:mumep_trq_ann_1070_vs_0170} 
+    compare
+  }
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Final track quality selections}
