@@ -106,6 +106,7 @@ void optimize_mumem() {
   }
   
   gr_dar_cele0s51b1->SetMarkerStyle(20);
+  gr_dar_cele0s51b1->GetYaxis()->SetRangeUser(0.1,7.);
   gr_dar_cele0s51b1->Draw("alp");
   
   gr_dar_cele0s51b2->SetMarkerStyle(20);
@@ -113,11 +114,19 @@ void optimize_mumem() {
   gr_dar_cele0s51b2->SetMarkerColor(kRed+2);
   gr_dar_cele0s51b2->Draw("lp,same");
   
-  gr_par_cele0s51b1->SetMarkerStyle(24);
+  gr_par_cele0s51b1->SetMarkerStyle(25);
   gr_par_cele0s51b1->Draw("lp,same");
 
-  gr_par_cele0s51b2->SetMarkerStyle(24);
+  gr_par_cele0s51b2->SetMarkerStyle(25);
   gr_par_cele0s51b2->SetLineColor  (kRed+2);
   gr_par_cele0s51b2->SetMarkerColor(kRed+2);
   gr_par_cele0s51b2->Draw("lp,same");
+
+  TLegend* leg = new TLegend(0.3,0.3,0.60,0.55);
+  leg->AddEntry(gr_dar_cele0s51b1,"DAR cele0s51b1:fele2s51b1");
+  leg->AddEntry(gr_dar_cele0s51b2,"DAR cele0s51b2:fele2s51b1");
+  leg->AddEntry(gr_par_cele0s51b1,"PAR cele0s51b1:fele2s51b1");
+  leg->AddEntry(gr_par_cele0s51b2,"PAR cele0s51b2:fele2s51b1");
+
+  leg->Draw();
 }

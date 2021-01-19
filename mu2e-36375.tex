@@ -9,8 +9,8 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
-\usepackage{graphicx}
 \usepackage{float}
+\usepackage{graphicx}
 
 
 \usepackage{tikz}
@@ -22,7 +22,6 @@
 % \usepackage{onimage}
 
 \usepackage{times}
-\usepackage{graphics}
 
 % \usepackage{subfigure}
 % \usepackage{scalefnt}
@@ -69,6 +68,9 @@
   \mumepconvRelay
 }
 \newcommand \mumepconvRelay[1][A]  {\mbox{$\mu^- \textrm{\ArgI} \rightarrow e^+ \textrm{#1}$}}
+\newcommand {\MuToEm}     {\mbox{$\mu^- \ra e^-$}}
+\newcommand {\MuToEp}     {\mbox{$\mu^- \ra e^+$}}
+\newcommand {\MuPToEp}    {\mbox{$\mu^+ \ra e^+$}}
 
 \newcommand {\ra}        {\rightarrow}
 \newcommand {\red}       {\color{red}}
@@ -129,6 +131,7 @@
 
 \include{relative_tc_timing}
 \include{calorimeter_timing_resolution}
+\include{track_momentum_corrections}
 \include{track_quality}
 \include{particle_identification}
 \include{to_be_investigated}
