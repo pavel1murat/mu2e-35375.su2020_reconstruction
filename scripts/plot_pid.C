@@ -19,6 +19,9 @@
 // fig  311: cele0s51b1 trk_110 vs trk_111 E/P
 // fig  312: cele0s51b1 trk_110 vs trk_111 rmax
 // fig  313: cele0s51b1 trk_110 vs trk_111 TCH_DT
+//
+// fig  321  mumi0s61b0 vs mumi1s51b0 trk_200/tch_ep
+// fig  322  mumi0s61b0 vs mumi1s51b0 trk_200/tch_dt
 //-----------------------------------------------------------------------------
 void plot_pid(int Figure, int Print = 0) {
   hist_data_t hd[10];
@@ -583,6 +586,102 @@ void plot_pid(int Figure, int Print = 0) {
     hd[2].fScale       = 2;
 
     int nhist = 3;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  321: mumi0s61b0 vs mumi1s51b0 trk_200/tch_ep
+//-----------------------------------------------------------------------------
+  if      (Figure == 321) {
+   
+    const char* dsid   = "su2020.mumi0s61b0";
+    const char* dsid2  = "su2020.mumi1s51b0";
+    const char* job    = "su2020_track_ana_10_1070";
+    const char* job2   = "su2020_track_ana_10_1170";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,job,"su2020_TrackAna","trk_200/ep");
+    hd[0].fNewName     = "mu-, 105 MeV/c ";
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "E/P";
+    // hd[0].fYMin        = 0.1;
+    // hd[0].fYMax        = 16000;
+    // hd[0].fXMin        = -8.;
+    // hd[0].fXMax        =  4;
+    hd[0].fLabel       = "";
+    hd[0].fYLogScale   = 1;
+    hd[0].fMarkerColor = kRed+1;
+    hd[0].fDrawOpt     = "hist";
+    hd[0].fStatBoxXMin = 0.70; hd[0].fStatBoxYMin = 0.75; hd[0].fStatBoxXMax = 0.90; hd[0].fStatBoxYMax=0.90;
+
+    //    hd[0].fLegendXMin = 0.35; hd[0].fLegendYMin = 0.40; hd[0].fLegendXMax = 0.55; hd[0].fLegendYMax=0.60;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_su2020_track_ana_trk_200_ep",Figure);
+			      
+    hd[0].fPlotLabel   = "";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid2,job2,"su2020_TrackAna","trk_200/ep");
+    hd[1].fNewName     = "mu-, 92 MeV/c";
+    hd[1].fLabel       = "";
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fLineWidth   = 2;
+    hd[1].fDrawOpt     = "hist"; 
+    hd[1].fStatBoxXMin = 0.70; hd[1].fStatBoxYMin = 0.60; hd[1].fStatBoxXMax = 0.90; hd[1].fStatBoxYMax=0.75;
+    hd[1].fScale       = 2;
+   
+    int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  322: mumi0s61b0 vs mumi1s51b0 trk_200/dt
+//-----------------------------------------------------------------------------
+  if      (Figure == 322) {
+   
+    const char* dsid   = "su2020.mumi0s61b0";
+    const char* dsid2  = "su2020.mumi1s51b0";
+    const char* job    = "su2020_track_ana_10_1070";
+    const char* job2   = "su2020_track_ana_10_1170";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,job,"su2020_TrackAna","trk_200/dt");
+    hd[0].fNewName     = "mu-, 105 MeV/c ";
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "dt, ns";
+    // hd[0].fYMin        = 0.1;
+    // hd[0].fYMax        = 16000;
+    // hd[0].fXMin        = -8.;
+    // hd[0].fXMax        =  4;
+    hd[0].fLabel       = "";
+    hd[0].fYLogScale   = 0;
+    hd[0].fMarkerColor = kRed+1;
+    hd[0].fDrawOpt     = "hist";
+    hd[0].fStatBoxXMin = 0.70; hd[0].fStatBoxYMin = 0.75; hd[0].fStatBoxXMax = 0.90; hd[0].fStatBoxYMax=0.90;
+
+    //    hd[0].fLegendXMin = 0.35; hd[0].fLegendYMin = 0.40; hd[0].fLegendXMax = 0.55; hd[0].fLegendYMax=0.60;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_su2020_track_ana_trk_200_dt",Figure);
+			      
+    hd[0].fPlotLabel   = "";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid2,job2,"su2020_TrackAna","trk_200/dt");
+    hd[1].fNewName     = "mu-, 92 MeV/c";
+    hd[1].fLabel       = "";
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fLineWidth   = 2;
+    hd[1].fDrawOpt     = "hist"; 
+    hd[1].fStatBoxXMin = 0.70; hd[1].fStatBoxYMin = 0.60; hd[1].fStatBoxXMax = 0.90; hd[1].fStatBoxYMax=0.75;
+    hd[1].fScale       = 2;
+   
+    int nhist = 2;
     plot_hist_1d(hd,nhist,-1);
 
     hd[0].fCanvas->Modified();

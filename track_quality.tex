@@ -295,72 +295,30 @@ and another one - for track selection in all channels in \MuToEp\ analysis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Final track quality selections}
+\subsection{Track selection cuts summary}
+\label{sec:track-selection_cuts_summary}
+  
+For SU2020 analyses, a well reconstructed track is a DAR track satisfying the following requirements
 
-The finalized track selection includes three cuts. The track impact parameter cut selects tracks consistent 
-with coming from the stopping target, the track $\tan\lambda$ cut, in essense, is an anti-cosmics cut, and 
-its final value needs to be optimized. The cut on the ANN output, or score, variable selects
-well reconstucted tracks.
+\begin{itemize}
+\item
+  the track impact parameter, $D0$, is consistent with the track coming from the stopping target: 
+  $|D0| < 100$ mm. We note that $D0$ is calculated at the point of the reconstructed trajectory 
+  inside the Mu2e tracker, several meters away from the stopping target, and cannot be 
+  directly compared with the radius of the stopping target foils
+\item 
+  the track dip angle, $\lambda = 90^o - \alpha$, where $\alpha$ is the track angle with respect 
+  to the solenoid axis, is within $ 0.5 < \tan{\lambda} < 1$. 
+  The choice of the lower cutoff value, 0.5, is not currently dictated by any real considerations.
+  It is a clean-up cutoff, which doesn't introduce any visible inefficiency. 
+  The requirement $\tan{\lambda} < 1$ reduces the tracking acceptance by about 10\%, 
+  and, most importantly, is an anti-cosmics selection. This cut also rejects tracks of particles 
+  produced upstream of the stopping target, i.e. coming from the TS
+\item
+  track quality ANN score $S_{ANN} > 0.2$
+\end{itemize}
 
-\begin{table}[h!]
-  \begin{center}
-    \begin{tabular}{l|c|c} % <-- Changed to S here.
-      \textbf{Cut variable} & \textbf{Cut value} & \textbf{``N-1'' Efficiency for CE}\\
-      \hline
-      track impact parameter,  D0 & | D0 | < 100 mm           &   0.990    \\
-      track dip angle, \tandip    & $ 0.5< \tan \lambda < 1.$ &   0.909    \\
-      track quality ANN score, $S_{TRQ}$      & $S_{TRQ} > 0.2$            &   0.901    \\
-    \end{tabular}
-  \end{center}
-  \caption{
-    \label{tab:trq_cuts}
-    Final Track quality selection
-  }
-\end{table}
-
-Table \ref{table:ce_trq_efficiency_vs_pileup} benchmarks the selection efficiencies for fits using two different
-anbiguity resolvers
-
-\begin{table}[h!]
-  \begin{center}
-    \caption{Efficiency for different levels of pile-up occupancy}
-    \label{tab:table1}
-    \begin{tabular}{l|c|c|c} % <-- Changed to S here.
-      \textbf{pileup}    & Eff DAR &  Efficiency PAR  &  DAR/PAR   \\
-      \hline                                                           
-      CE                 &  0.152  &   0.149          &  1.02      \\
-      CE+1-batch pileup  &  0.152  &   0.146          &  1.04      \\
-      CE+2-batch pileup  &  0.149  &   0.143          &  1.04      \\
-    \end{tabular}
-  \end{center}
-  \caption{
-    \label{table:ce_trq_efficiency_vs_pileup_1} 
-    conversion electron (CE) track selection efficiency for different levels of pileup and momentum window [103,105.0]  
-    and T0 > 700 ns
-  }
-\end{table}
-
-
-% PAR 1b:107810
-
-\begin{table}[h!]
-  \label{table:ce_trq_efficiency_vs_pileup_2} 
-  \begin{center}
-    \begin{tabular}{l|c|c|c} % <
-      \textbf{pileup}    & Eff DAR &  Efficiency PAR  &  DAR/PAR   \\
-      \hline                                                           
-      CE                 &  0.111  &   0.104          &  1.07      \\
-      CE+1-batch pileup  &  0.113  &   0.108          &  1.05      \\
-      CE+2-batch pileup  &  0.111  &   0.105          &  1.05      \\
-    \end{tabular}
-  \end{center}
-  \caption{
-    conversion electron (CE) track selection efficiency for different levels of pileup and momentum window [103.85,105.0] 
-    and T0 > 700 ns
-  }
-\end{table}
-
-
-
-
-
+Although \MuToEm\ and \MuToEp\ analyses use different track quality ANN's trained using tracks in different
+momentum range, the cut value ison the ANN score isthe same in both cases.
+It was verifies that the ANN-based track selection is charge-symmetric, i.e. for a given momentum,
+the track selection efficiency doesn't depend on the reconstructed track charge.
