@@ -29,15 +29,16 @@ assigned to the cluster shows a systematic shift of about 0.5-0.6ns, apparently 
 For now, we correct the cluster timing and use the default resolutions assigned to the calorimeter cluster 
 in the Kalman fit.
 
-{\red insert here from next section:
-The resolution tuning has been performed after the global track-to-calorimeter timing offsets
-have been corrected. The global correction introduced was 1.86ns, while after the tuning, the offset
-value is about 1.6 ns. Resulting non-accounted for systematic offset of about 0.25 ns is however
-about x2 smaller than the offset introduced by the Kalman fitter. }
+Correction of the the global track-to-calorimeter timing offset have been introduced {\bf before} 
+the tuning of the calorimeter timing resolution has been completed. The global correction zeroing the offset
+of the timing residuals was 1.86 ns, whereas after the tuning, the observed offset value is about 1.6 ns.
+Resulting non-accounted for systematic offset of about 0.25 ns is however about x2 smaller than the offset
+introduced by the Kalman fitter.
 
-It is worth noting that the width of the distribution in timing residual is approximately 0.5 of the error assigned 
-to the cluster, which is another indication of the cluster introducing a non-compensated systematic effect into the 
-Kalman fit.
+It is also worth noting that the width of the distribution of the calorimeter cluster timing residuals is
+approximately 50\% of the error assigned to the cluster. The proportionality stays the same, about 50\% level,  
+when the timing error assigned to the cluster varies in the range [0.25 ns, 1 ns]. That is another indication
+of a non-compensated systematic effect related to the use of the calorimeter cluster in the Kalman fit.
 
 \begin{figure}[h]
   \hspace{-0.8in}

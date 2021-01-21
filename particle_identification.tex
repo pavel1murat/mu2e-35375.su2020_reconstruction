@@ -91,7 +91,7 @@ The following event variables have been used in the ANN training:
   {\bf path} : overall length of the trajectory within the calorimeter disk, defines edges
 \end{itemize}
 
-PID ANN training performed using ROOT TMVA package uses 5000 electron and 5000 muon events.
+PID ANN training performed using ROOT TMVA package uses 10000 electron and 10000 muon events.
 Events with muon decays in flight are excluded by requiring the last point (StepPointMC)
 of the muon MC trajectory to have Z > 11000 mm.
 %
@@ -235,8 +235,8 @@ studied in detail later.
   \caption{
     \label{fig:pid_training_4}
     Distribution in the PID ANN score for electron and muon samples, samples include events used for training,
-    5000 events each. A spike in muon PID at 1  - muon decays in flight. \\ 
-    {\color{red} \bf Origin of the plotted underflow bin to be investigated}
+    10000 events each. A spike in muon PID at 1  - muon decays in flight. \\ 
+    {\color{red} \bf check that underflows are events without clusters}
   }
 \end{figure}
 
@@ -278,15 +278,20 @@ as the part of the muon cluster energy.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection { Electrons, failing the PID selection} 
+\subsection { Electrons, failing the PID selection}
+\label{sec:electrons_failing_pid}
 
 Figure \ref{fig:electrons_failing_pid} compares distributions in some ID variables for electrons 
 passing and failing the PID cuts.
 
 Although only 0.8\% Of events are in question, understanding of the ANN failures could help finding 
 reconstruction problems.
-
-Of special interest seems to be the spike in the distribution in R(max)
+\begin{itemize}
+\item 
+  {\red Of special interest seems to be the spike in the distribution in $R_{max}$ - to be investigated}
+\item
+  {\red also electrons with $\Delta{T} < -1.5$ ns - to be investigated}
+\end{itemize}
 
 \begin{figure}[H]
 \hspace{-0.6in}
@@ -329,11 +334,19 @@ Of special interest seems to be the spike in the distribution in R(max)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \subsection{\MuToEp\ Channel}
+\label{sec:mumep_channel_pid}
 
 PID in \MuToEp\ channel uses a similar ANN trained  using  92 MeV/c positrons and$\mu^+$'s from {\bf pos01s51b0}
 and {\bf mupl1s51b0} datasets. The training procedure is the same as described in Section \ref{sec:mumem_pid_ann_training}.
+% 
+Figure \ref{fig:pid_score_mumep} shows distributions of the PID ANN score, $S_{PID}$,
+for 92 MeV positrons and $\mu^+$'s. About 1.2\% of all muon events have $S_{PID} > 0.5$,
+more than 50\% of those events are electrons produced in muon decays in flight.
 
-Figure \ref{fig:pid_score_mumep} shows distributions of the PID score  for 92 MeV positrons and $\mu^+$'s. 
+Plotting the data in log scale - see Figure \ref{fig:pid_score_mumep}(b) - reveals a spike around 0.25,
+present in both positron and muon distributions.
+
+{\red Although the relative contribution of the spike is small, its origin needs to be investigated.}
 
 \begin{figure}[H]
 \hspace{-0.6in}
@@ -341,12 +354,22 @@ Figure \ref{fig:pid_score_mumep} shows distributions of the PID score  for 92 Me
     \node[anchor=south west,inner sep=0] at (0,0.) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       % \makebox[\textwidth][c] {
-      \includegraphics[width=0.60\textwidth]{figures/pdf/missing_plot}
+      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00331_su2020_track_ana_1110_trk_219_pidmvaout}
       % }
     };
+    \node [text width=1cm, scale=1.0] at (3.,4.5) {(a)};
+    \node[anchor=south west,inner sep=0] at (10.5,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00332_su2020_track_ana_1110_trk_219_pidmvaout_log}
+      % }
+    };
+    \node [text width=1cm, scale=1.0] at (13.5,4.5) {(b)};
   \end{tikzpicture}
   \captionof{figure} {
     \label{fig:pid_score_mumep}
-    Quality of the PID ANN training for\MuToEp\ channel: PID score distributions for 92.3 positrons and positive muons
+    Results of the PID ANN training for \MuToEp\ channel: distribution of the PID ANN score, $S_{PID}$,
+    for single 92.3 positrons and positive muons; (a): linear scale; (b): log scale.
+    {\red Nature of the spike around 0.25 needs to be investigated.}
   }
 \end{figure}
