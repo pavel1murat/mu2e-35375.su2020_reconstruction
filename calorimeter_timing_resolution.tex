@@ -22,7 +22,7 @@ A safety factor of 2 has been used for the  neutron induced noise to reflect the
   \begin{center} 
     \begin{tabular}{|c|c|c|c|c|}
       \hline
-      Run 1 period      & FEE noise  & RIN     & Dark current noise & Total    \\ 
+      Run 1 period      & FEE noise  & RIN     & Dark current noise & RIN$\oplus$Dark    \\ 
       \hline
       1 batch start     & 200 keV    & 280 keV &  --                & 344 keV  \\
       1 batch end       & 200 keV    & 280 keV &  450 keV           & 566 keV  \\
@@ -32,16 +32,16 @@ A safety factor of 2 has been used for the  neutron induced noise to reflect the
   \end{center}
   \caption{
   \label{table:calonoise}
-    Calorimeter noise levels in different Run 1 periods as estimated in \cite{MU2E_35519_CALO_NOISE}.
+    Calorimeter noise levels in different Run 1 periods as estimated in \cite{MU2E_35519_CALO_NOISE}. 
   }
   % \vspace{0.5in}
 \end{table}
 
 Using the results in the Table \ref{table:calonoise}, we assume an average noise of 455 keV
 for the 1 batch period and 600 keV for the 2 batch period. 
-A parametrization of the time resolution as function of the noise level and the energy deposited
+A parametrization of the time resolution as function of the RIN$\oplus$Dark noise level (assuming FEE noise fixed at 200 keV) and the energy deposited
 in a crystal obtained using the latest calorimeter simulation software has been presented in  \cite{MU2E_36225_CALO_TIME_RES}.
-The curves corresponding to the noise level of 455 keV and 600 keV are the lower dashed
+The curves corresponding to a RIN$\oplus$Dark noise of 455 keV and 600 keV are the lower dashed
 lines in Figures \ref{fig:calorimeter_timing_resolution_1batch} and  \ref{fig:calorimeter_timing_resolution_2batch}.
 
 Table \ref{table:calonoise} does not include the time jitter of the accelerator signal.
@@ -55,7 +55,7 @@ for a chain of 2 DTCs and 217 ps for a chain of 7 DTCs. We take 200 ps as our be
 
 Integration of the latest updates to the calorimeter simulation software into the SU2020 branch
 would be a task, very complicated technically. Instead, an additional Gaussian time smearing
-component is added to the  CaloCrystalHitFromHist module to reproduce the desired time resolution. 
+component is added to the  CaloCrystalHitFromHit module to reproduce the desired time resolution. 
 
 Figures \ref{fig:calorimeter_timing_resolution_1batch} and  \ref{fig:calorimeter_timing_resolution_2batch} show the output of the time resolution
 simulation with the additional Gaussian smearing component as a function of the energy deposited
@@ -65,12 +65,12 @@ The deviations at small energies are not important as the time resolution simula
 in those regions is known to be less reliable.
 
 \begin{figure}[h]
-  \hspace{-0.6in}
+%  \hspace{-0.6in}
   \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] at (0.,0.) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       \makebox[\textwidth][c] {
-        \includegraphics[width=0.80\textwidth, trim = 40 0 125 0, clip]{figures/pdf/figure_00401_sigmat_1batch_corrected}
+        \includegraphics[width=0.90\textwidth, trim = 40 0 125 0, clip]{figures/pdf/figure_00401_sigmat_1batch_corrected}
       }
     };
     % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
@@ -87,12 +87,12 @@ in those regions is known to be less reliable.
 \end{figure}
 
 \begin{figure}[h]
-  \hspace{-0.6in}
+%  \hspace{-0.6in}
   \begin{tikzpicture}
     \node[anchor=south west,inner sep=0] at (0.,0.) {
       % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
       \makebox[\textwidth][c] {
-        \includegraphics[width=0.80\textwidth, trim = 40 0 125 0, clip]{figures/pdf/figure_00402_sigmat_2batch_corrected}
+        \includegraphics[width=0.90\textwidth, trim = 40 0 125 0, clip]{figures/pdf/figure_00402_sigmat_2batch_corrected}
       }
     };
     % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
