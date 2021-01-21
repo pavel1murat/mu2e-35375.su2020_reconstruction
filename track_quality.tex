@@ -71,6 +71,7 @@ tracker front.
 
 To choose between the PAR-based and DAR-based fitters, we compared performance of the
 trained DAR ANN to the performance of the default for the \strike{offline} {\blue Mu2e Offline} v9\_0\_5 \strike{offline} PAR ANN.
+{\blue (SDF) Did you try to retrain PAR with our datasets? There could be a bias in using an ANN trained on different conditions. If yes, it should be stated here.} 
 %
 \strike{Using the CD3 choice of the signal region , 103.85 < P < 104.90 MeV/c, $T_0 > 700$ ns, we compared performances of the two methods.}
 {\blue We compared the performance of the two methods using the CD3 choice for the signal region: 103.85 < P < 104.90 MeV/c and $T_0 > 700$ ns.}
@@ -125,7 +126,8 @@ For the DAR tracks, improving the signal acceptance by the same 5\% \strike{wrt}
   of the \strike{CE signal selection with the} {\blue signal using the default Offline} PAR ANN. 
   PAR curves go through \strike{(1,1) point} {\blue the point (1,1)} by construction.
   Background : DIO-weighted {\bf fele2s51b1}, \strike{CE} signal: {\bf cele0s51b1} (red), or {\bf cele0s61b2} (black).
-  {\blue Default Offline} PAR track selection {\blue uses} $S_{PAR} > 0.8$;  \strike{DAR track selection: $S_{DAR} > 0.2$}
+  {\blue (SDF) datasets name are not of immediate comprehension for everybody. I would write: Background: DIOs with 1 batch pileup (from weighted  {\bf fele2s51b1} dataset). Signal: CE with 1 batch pileup (red, from  {\bf cele0s51b1} dataset) and CE with 2 batches pileup (black, from  {\bf cele0s51b2} dataset). You could eventually change also the legend. Is the title of the histogram correct or does it refer to red points only? It could be skipped. The rejection against 1 batch DIO also for 2 batches CE should be motivated. Maybe it's more easy to understand for the reader if we make 2 plots: one for 1 batch and one for 2 batches.}
+  {\blue Default Offline} PAR track selection {\blue uses} $S_{PAR} > 0.8$; {\blue (SDF) I would put also the PAR cut in the text body}  \strike{DAR track selection: $S_{DAR} > 0.2$}
   {\blue where is this on the plot and how is it used? This seems to be a result from it, in which case it can be omitted here as it is in the note body.}
   \strike{Use of the DAR tracks instead of the PAR ones improves CE signal acceptance in the CD3 signal region of [103.85,104.90]
   by 4-5\%, while the corresponding DIO background is kept at a lower level} {\blue this is more interpretation repeated from the note body}
@@ -201,7 +203,7 @@ of tracks with $\Delta{P}$ above {\blue a} certain threshold. In particular, tra
 \end{figure}
 
 As a cross-check, we used the TMVA package to train a BDT-based track quality classifier.
-Similar to \cite{MU2E_33150_ANN_TRAINING}, we found that the MLP ANN performed slightly better,
+Similar to \cite{MU2E_33150_ANN_TRAINING}, we found that the MLP ANN performed slightly better, {\blue (SDF) Did you try to optimize BDT method parameters?}
 so \strike{current analysis uses} {\blue current analyses use or the current analysis uses} a MLP ANN-based track quality selection.
 \strike{\textbackslash n}
 To explore the parameter space, the definition of a ``mis-reconstructed track'' has been varied and
@@ -279,7 +281,7 @@ of the ANN-based PAR track selection, leaving a potential for further improvemen
     Signal: {\bf cpos0s51b1} , signal window {\blue efficiency}, background:{\bf cpos0s51b1} , tracks with $\Delta{P} > 1.0$ MeV.
     Both signal and background are measured in units of signal and background {\blue efficiency} corresponding to the selection
     using {\blue the} default Offline v9\_0\_5 ANN-based track selection, $S_{PAR}^+ > 0.8$.
-    {\blue Remove fpos dataset from legend or clarify this is the training dataset}
+    {\blue Remove fpos dataset from legend or clarify this is the training dataset} {\blue (SDF) Also here I would use explicitly use positrons with 1 batch pileup quoting {\bf cpos0s51b1} in brackets.}
   }
 \end{figure}
 
