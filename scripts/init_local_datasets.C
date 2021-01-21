@@ -109,19 +109,16 @@ void init_local_datasets(stn_book* Book) {
     hf = Book->NewHistFile(ds->id()            ,"","pid_emuana");
     hf = Book->NewHistFile(ds->id()            ,"","pid_emuana_1010");
     hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana_10_1070");
-<<<<<<< HEAD
     hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana_1010");
-=======
 
     d  = Book->NewDataset ("su2020.mupl3s51b0" ,"",-1,  1000000);     // 
-    hf = Book->NewHistFile("su2020.mupl3s51b0" ,"","su2020_track_ana_00_ffff");
-    hf = Book->NewHistFile("su2020.mupl3s51b0" ,"","su2020_track_ana_10_ffff");
+    hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana_00_ffff");
+    hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana_10_ffff");
 
     d  = Book->NewDataset ("su2020.pbar0s11b0" ,"",-1,2000000000); // Giovanni pbars at VD91
 
     ds = Book->NewDataset ("su2020.mumi1s51b0" ,"",-1,  1000000);     // PID dataset 92.32 MeV/c
     hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana_10_1170");
->>>>>>> 9dd076b0a8136b865bd80fe527c3afea813f31a1
 
     ds = Book->NewDataset ("su2020.mupl0s51b0" ,"",-1,  1000000);     // PID dataset
     hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana_10_1170");
