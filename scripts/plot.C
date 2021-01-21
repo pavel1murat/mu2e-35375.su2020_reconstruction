@@ -11,13 +11,15 @@
 // fig  124: dio 1batch and 2batch,scaled to gen event number
 //
 //
+// fig  130-140 : track cluster timing offsets
+// fig  160-170:  DIO plots and mupl2 plots
 // fig  200-299 - track ID 
 //
 // fig  300-399 - particle (e/mu) ID 
 //
 ///////////////////////////////////////////////////////////////////////////////
-const char* Mu2eNotesDir        = "/projects/mu2e/app/users/murat/notes";     // mu2egpvm*
-const char* Mu2eHistDir         = "/projects/mu2e/data/users/murat/hist";     // mu2egpvm*
+const char* Mu2eNotesDir        = "/mu2e/data/projects/su2020/notes";     // mu2egpvm*
+const char* Mu2eHistDir         = "/mu2e/data/projects/su2020/hist";      // mu2egpvm*
 
 const char* NoteRepo            = "mu2e-36375.su2020_reconstruction";
 
@@ -38,7 +40,8 @@ stn_catalog*   catalog;           // has to be global
 #include "init_local_datasets.C"
 
 #include "plot_tid.C"                     // track quality ID
-#include "plot_pid.C"                     // paerticle (e/mu) separation
+#include "plot_pid.C"                     // particle (e/mu) separation
+#include "plot_tcl_dt_offsets.C"          // dt offsets
 //-----------------------------------------------------------------------------
 // real [machine-dependent] values of Mu2eNotesDir and Mu2eHistDir 
 // should be defined in .rootrc
@@ -70,8 +73,9 @@ void plot(int Figure, int Print = 0) {
 
   init();
 
-  if ((Figure >= 200) && (Figure < 300)) plot_tid(Figure,Print);
-  if ((Figure >= 300) && (Figure < 400)) plot_pid(Figure,Print);
+  if ((Figure >= 130) && (Figure < 140)) plot_tcl_dt_offsets(Figure,Print);
+  if ((Figure >= 200) && (Figure < 300)) plot_tid           (Figure,Print);
+  if ((Figure >= 300) && (Figure < 400)) plot_pid           (Figure,Print);
 //-----------------------------------------------------------------------------
 // fig    1: trk_200/dPf - DIO-weighted dPf for tracks with P > 103.6 MeV/c
 //-----------------------------------------------------------------------------
@@ -589,7 +593,7 @@ void plot(int Figure, int Print = 0) {
 // fig  124:  dio one batch vs two batch; scaled to gen number 
 //-----------------------------------------------------------------------------
   if      (Figure == 124) {
-    const char* dsid   = "su2020.fele2s51b1";
+    const char* dsid    = "su2020.fele2s51b1";
     const char* ana_job = "su2020_track_ana_12_1070";
 
     hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_12_1070","su2020_TrackAna","trk_2012/p");
@@ -637,9 +641,9 @@ void plot(int Figure, int Print = 0) {
     if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
   }
 //-----------------------------------------------------------------------------
-// fig  131:  cele with fit_cb2_asymm
+// fig  161:  cele with fit_cb2_asymm
 //-----------------------------------------------------------------------------
-  if      (Figure == 131) {
+  if      (Figure == 161) {
     const char* dsid    = "su2020.cele0s61b2";
     const char* ana_job = "su2020_track_ana_02_1070";
 
@@ -684,9 +688,9 @@ void plot(int Figure, int Print = 0) {
   }
 
 //-----------------------------------------------------------------------------
-// fig  132:  mupl3(52.8MeV e+) with fit_cb2_asymm
+// fig  162:  mupl3(52.8MeV e+) with fit_cb2_asymm
 //-----------------------------------------------------------------------------
-  if      (Figure == 132) {
+  if      (Figure == 162) {
     const char* dsid    = "su2020.mupl3s51b0";
     const char* ana_job = "su2020_track_ana_00_ffff";
 
