@@ -11,6 +11,7 @@
 \usepackage[english]{babel}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{ulem}
 
 
 \usepackage{tikz}
@@ -73,12 +74,15 @@
 \newcommand {\MuPToEp}    {\mbox{$\mu^+ \ra e^+$}}
 
 \newcommand {\ra}        {\rightarrow}
-\newcommand {\red}       {\color{red}}
+\newcommand {\red}       {\color{red} }
+\newcommand {\blue}      {\color{blue}}
 \newcommand {\tandip}    {\mbox{$\tan \lambda$}}
 
 \newcommand {\Pb}[1]     {\mbox{$\rm ^{#1}Pb$}}                 % isotopes of lead
 \newcommand {\Au}[1]     {\mbox{$\rm ^{#1}Au$}}                 % isotopes of gold
 \newcommand {\Ir}[1]     {\mbox{$\rm ^{#1}Ir$}}                 % isotopes of iridium
+
+\newcommand {\strike}[1] {{\blue \sout{#1}}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
@@ -92,12 +96,14 @@
   \vspace{1cm}
   
   \begin{center}
-    {\Large \bf Mu2e '2020 sensitivity update. \\
+    {\Large \bf Mu2e \strike{'2020} {\blue 2020} sensitivity update. \\
       2. Reconstruction} 
     
     \vspace{1cm}
     
-    S. Di Falco (INFN Pisa), S. Huang (Purdue Univ), M. Mackenzie (Northwestern Univ), P. Murat(FNAL)
+    S. Di Falco (INFN Pisa), S. Huang (Purdue \strike{Univ} {\blue Univ.}),
+    M. \strike{Mackenzie} {\blue MacKenzie} (Northwestern \strike{Univ} {\blue Univ.}),
+    P. Murat(FNAL)
     
     % \footnote{\texttt{Fermilab; e-mail: murat@fnal.gov}}
     \vspace{0.3cm}
@@ -106,7 +112,8 @@
   \end{center}
 
   \begin{abstract}
-    The note documents changes made to the Mu2e reconstruction software used for '2020 sensitivity update (SU2020)
+    \strike{The} {\blue This} note documents changes made to the Mu2e reconstruction software
+    used for \strike{'2020} {\blue 2020} sensitivity update (SU2020){\blue .}
   \end{abstract}
 
 \end{titlepage}

@@ -1,44 +1,68 @@
 % -*- mode:latex; mode:flyspell -*-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Correcting relative tracker-calorimeter timing offset}
+\section{Correcting {\blue the} relative tracker-calorimeter timing offset}
 
-In an event which has a calorimeter cluster matching to a reconstructed track, the
-cluster is included into the track fit as an additional hit. The algorithm reconstructing 
+In an event \strike{which} {\blue that} has a calorimeter cluster \strike{matching} {\blue matched}
+to a reconstructed track, the
+cluster is included in\strike{to} the track fit as an additional hit. 
+\strike{The algorithm reconstructing 
 straw hits in the tracker and the algorithm reconstructing the waveform timing in the calorimeter
-could add different timing offsets to the reconstructed hits and clusters correspondingly.
-Those offsets need to be calibrated out.
+could add different timing offsets to the reconstructed hist and clusters correspondingly.
+Those offsets need to be calibrated out.}
+{\blue The straw hit reconstruction algorithm in the tracker and the waveform reconstruction 
+algorithm
+in the calorimeter can add different timing offsets to the reconstructed straw hits and 
+calorimeter
+clusters respectively; these timing offsets need to be calibrated out.}
 
-A cluster is included into the track fit with the coordinate error $\sigma_{XY} = 15$ mm
-and the timing error $\sigma_T = 0.5$ ns.
+\strike{A cluster is included into the track fit with the coordinate error $\sigma_{XY} = 15$ mm
+and the timing error $\sigma_T = 0.5ns$.}
 
-The distribution of the calorimeter cluster timing residuals for conversion electrons and default Kalman fit 
-configuration is shown in Figure \ref{fig:track_cluster_dt}.a. The distribution of cluster timing residuals 
-is centered at about -1.17 ns and has a width of about 0.34 ns, indicating presence of the systematic effect.
+{\blue The cluster is included in the track fit with a coordinate error $\sigma_{XY} = 15$ mm
+and a timing error $\sigma_T = 0.5$ ns.}
+The distribution of the calorimeter cluster timing residuals for conversion electrons \strike{and}
+{\blue using the} default Kalman fit 
+configuration is shown in Figure \ref{fig:track_cluster_dt}.a. 
+The distribution of cluster timing residuals 
+is centered at about -1.17 ns and has a width of about 0.34 ns, \strike{indicating presence of
+the systematic effect.} {\blue indicating a systematic timing offet.}
 
-To study the effect and avoid biasing the fit, the errors assigned to the cluster were increased to $10^6$ (ns or mm),
-the corresponding distribution in timing residuals is shown in Figure \ref{fig:track_cluster_dt}.b. 
-In this case, inclusion of the cluster into the track fit doesn't bias the result of the fit and one can conclude 
-that there is a systematic timing offset between the tracker and the calorimeter, which value is about 1.6 ns.
+To study the \strike{effect} {\blue systematic offset} and avoid biasing the fit, the 
+{\blue coordinate and timing} errors assigned to the 
+cluster were increased to $10^6$ \strike{(ns or mm)} {\blue ns and $10^6$ mm respectively},
+the corresponding distribution in timing residuals is shown in Figure 
+\ref{fig:track_cluster_dt}.b. 
+In this case, \strike{inclusion of} {\blue including} the cluster in\strike{to} the track fit
+\strike{doesn't}
+{\blue does not} bias the result of the fit and {\blue so} one can conclude 
+that there is a systematic timing offset between the tracker and the calorimeter\strike{, 
+which value is about 1.6 ns.} {\blue of about 1.6 ns.}
+Figure \ref{fig:track_cluster_dt}.c corresponds to \strike{the} {\blue a} fit configuration with
+the cluster time corrected by 1.6 ns, {\blue where, although the errors are large, the}
+\strike{and still large errors, and one can see that the} applied correction zeroes the timing offset.
 
-Figure \ref{fig:track_cluster_dt}.c corresponds to the fit configuration with the cluster time corrected by 1.6 ns, 
-and still large errors, and one can see that the applied correction zeroes the timing offset.
+{\blue The d}\strike{D}istribution of timing residuals with the cluster time corrected by 
+\strike{1.6ns} {\blue 1.6 ns} and {\blue using the} default 
+{\blue coordinate and timing} errors (\strike{0.5ns and 15mm} {\blue 0.5 ns and 15 mm respectively}) 
+assigned to the cluster shows a systematic shift of about \strike{0.5-0.6ns} {\blue 0.5-0.6 ns},
+apparently introduced by the fitting procedure.
+{\blue For now, we correct this additional cluster timing offset and use the default errors 
+assigned to the calorimeter cluster in the Kalman fit.}
 
-Distribution of timing residuals with the cluster time corrected by 1.6ns and default errors (0.5ns and 15mm) 
-assigned to the cluster shows a systematic shift of about 0.5-0.6ns, apparently introduced by the fitting procedure.
+\strike{For now, we correct the cluster timing and use the default resolutions assigned to the calorimeter cluster 
+in the Kalman fit.}
 
-For now, we correct the cluster timing and use the default resolutions assigned to the calorimeter cluster 
-in the Kalman fit.
-
-Correction of the the global track-to-calorimeter timing offset have been introduced {\bf before} 
-the tuning of the calorimeter timing resolution has been completed. The global correction zeroing the offset
+Correction of the the global track-to-calorimeter timing offset \strike{have} {\blue has (had?)} been introduced {\bf before} 
+the tuning of the calorimeter timing resolution \strike{has} {\blue had} been completed. The global correction zeroing the offset
 of the timing residuals was 1.86 ns, whereas after the tuning, the observed offset value is about 1.6 ns.
-Resulting non-accounted for systematic offset of about 0.25 ns is however about x2 smaller than the offset
-introduced by the Kalman fitter.
+{\blue The r}\strike{R}esulting{\blue , un}\strike{non-}accounted for{\blue ,} systematic offset of about 0.25 ns is however about x2 smaller than the offset
+introduced by the Kalman fitter. {\blue Not entirely clear what this paragraph is saying about the order of offsets
+and what the 1.86 ns offset is/came from, perhaps re-wording?}
 
 It is also worth noting that the width of the distribution of the calorimeter cluster timing residuals is
-approximately 50\% of the error assigned to the cluster. The proportionality stays the same, about 50\% level,  
+approximately 50\% of the error assigned to the cluster. The proportionality stays the same, about 50\%\strike{ level},  
 when the timing error assigned to the cluster varies in the range [0.25 ns, 1 ns]. That is another indication
-of a non-compensated systematic effect related to the use of the calorimeter cluster in the Kalman fit.
+of a {\blue un}\strike{non-}compensated systematic effect related to the use of the calorimeter cluster in the Kalman fit.
 
 \begin{figure}[h]
   \hspace{-0.8in}
@@ -78,9 +102,9 @@ of a non-compensated systematic effect related to the use of the calorimeter clu
     \label{fig:track_cluster_dt}
     Track-cluster timing offsets and their correction: 
     (a) default offline configuration;
-    (b) cluster assigned large errors in the fit; 
+    (b) cluster assigned large errors in the fit; {\blue label (b) cluster large errors $\ra$ large errors}
     (c) cluster timing corrected by 1.6 ns, still large errors;
-    (d) cluster timing corrected by 1.6ns, default errors
+    (d) cluster timing corrected by 1.6ns, default errors {\blue label on plot (d) says large errors}
   }
 \end{figure}
 
