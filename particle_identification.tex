@@ -5,12 +5,14 @@
 %%% End:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Particle Identification}
+\section{Particle identification}
+{\blue lowercase title words after first word}
 
-Momentum region around 100 MeV/c muons is withing the range where transition from non-relativistic
-to ultra-relativistic regime is happening for muons. As shown in Figure \ref{fig:pid_ep_dt}
-distributions of important for particle ID variables for 92 MeV/c and 105 MeV/c muons are quite
-different. Therefore it makes sense to optimize the particle ID algorithms for \MuToEm\ and \MuToEp\ 
+{\blue The m}\strike{M}omentum region around 100 MeV/c {\blue for} muons is within the range where
+{\blue the} transition from {\blue the} non-relativistic
+to {\blue the} ultra-relativistic regime is happening \strike{for muons}. As shown in Figure \ref{fig:pid_ep_dt}{\blue ,}
+distributions of important \strike{for particle ID variables} {\blue variable for particle ID} for 92 MeV/c and 105 MeV/c muons are quite
+different. Therefore it makes sense to optimize the particle ID algorithms for {\blue the} \MuToEm\ and \MuToEp\ 
 conversion searches separately.
 
 \begin{figure}[H]
@@ -33,11 +35,14 @@ conversion searches separately.
   % \captionof{figure} {
   \caption{
   \label{fig:pid_ep_dt}
-    E/P and $\Delta T$ distributions for 105 and 92 MeV/c muon tracks reconstructed under electron
-    hypothesis. Bump in between -10 and -5 ns in the $\Delta T$ distributions corresponds to events 
-    with the calorimeter cluster rejected by the track fit, so the track T0 is not biased by the fit.
-    Events in the peak around -1.5 ns have the ``track cluster hist'' surviving the fit and thus
-    biasing the fit results.
+    {\blue The} E/P and \strike{$\Delta T$} {\blue $\Delta{T_0}$} distributions for 105 and 92 MeV/c muon tracks
+    reconstructed under {\blue an} electron hypothesis. {\blue The b}\strike{B}ump \strike{in between} {\blue inbetween}
+    -10 and -5 ns in the \strike{$\Delta T$} {\blue $\Delta{T_0}$} distributions corresponds to events 
+    with the calorimeter cluster rejected by the track fit, so the track $T_0$ is not biased by the fit.
+    Events in the peak around -1.5 ns have the \strike{``track cluster hist'' surviving} {\blue cluster used by} 
+    the fit and thus biasing the fit results.
+    {\blue (b) x axis should be $\Delta{T_0}$;}
+    {\blue trk\_200/xxx label not needed here}
   }
 \end{figure}
 
@@ -47,72 +52,76 @@ into the track fit somewhat degrades the separation between electrons and muons.
 At the same time, inclusion of the cluster into the track fit stabilizes the track fit, improves its
 convergence and, overall, results in a higher track reconstruction efficiency.
 %
-Taking both considerations into account, we've chosen to use ANN-based PID classifiers,
-expecting the ANN training to ``absorb'' existing systematic effects while providing sufficiently
+Taking both considerations into account, \strike{we've} {\blue we have} chosen to use ANN-based PID classifiers,
+expecting the ANN training to ``absorb'' existing systematic effects while providing {\blue a} sufficiently
 high level of muon rejection.
-
-Single particle datasets {\bf ele00s61b0} and {\bf mumi0s61b0},  105 MeV/c electrons and$\mu^-$'s,
-have been used to train the PID ANN for \MuToEm\ channel.
+\strike{\textbackslash n}
+Single particle datasets {\bf ele00s61b0} and {\bf mumi0s61b0},  105 MeV/c electrons and\strike{$\mu^-$'s}
+{\blue negative muons},
+have been used to train the PID ANN for {\blue the} \MuToEm\ channel.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection {PID ANN Training }
+\subsection {PID ANN training }
 \label{sec:mumem_pid_ann_training}
+{\blue lowercase title words after first word}
 
-MVA classifiers were trained only for DAR resolver, however based on the nature of 
+MVA classifiers were trained only for DAR \strike{resolver} {\blue tracks}, however{\blue ,} based on the nature of 
 the variables used, the trained MVA should perform equally well for PAR tracks.
-
-Both electron and muon reconstruction were ran on the same event. In principle, using 
-for a given event information from two reconstruction passes adds information and may
-improve electron-muon separation. However, it was found that adding requirement for each
-track to be reconstructed under electron and muon hypotheses complicates logic and increases
-the number of special cases to consider without providing a visible improvement. Therefore,
-inputs for the ANN training are provided by the electron reconstruction only.
+\strike{\textbackslash n}
+Both electron and muon reconstruction were \strike{ran} {\blue run} on the same event. 
+\strike{In principle, using for a given event information from two reconstruction passes adds information and may
+improve electron-muon separation. }
+{\blue In principle, using information from two reconstruction passes on a given event adds information that may improve electron-muon separation.}
+However, it was found that adding {\blue the} requirement \strike{for} {\blue that} each
+track \strike{to be} {\blue is} reconstructed under {\blue an} electron and muon hypotheses complicates {\blue reconstruction} logic and increases
+the number of special cases to consider without providing a visible improvement. 
+Therefore, inputs for the ANN training are provided by the electron reconstruction only.
 
 Events used for ANN training were required to have a downstream DAR track passing
 the track selection cuts described in Section \ref{sec:track-selection_cuts_summary}.
 %
-The following event variables have been used in the ANN training:
+The following event variables \strike{have been} {\blue were} used in the ANN training:
 
 \begin{itemize}
 \item 
   {\bf E(cluster)/P(track)} : although all tracks used in training have the same generated momentum,
   using E/P reduces dependence on the track momentum 
 \item 
-  {\bf N(crystals)} : number of crystals in the reconstructed calorimeter cluster
+  {\bf N(crystals)} : {\blue the} number of crystals in the reconstructed calorimeter cluster
 \item 
-  {\bf eSeedfr} : fraction of energy in the seed crystal ($E_{seed}/E_{cluster}$)
+  {\bf eSeedfr} : {\blue the} fraction of energy in the seed crystal ($E_{seed}/E_{cluster}$)
 \item 
-  {$\bf \Delta T$} : time residual of the calorimeter cluster as determined by the kalman fit
+  {$\bf \Delta T$} : {\blue the} time residual of the calorimeter cluster as determined by the {\blue K}\strike{k}alman fit
 \item 
-  {$\bf Z_{cluster}$} : cluster Z-coordinate (within the corresponding calorimeter disk) as determined by the kalman fit
+  {$\bf Z_{cluster}$} : {\blue the} cluster Z-coordinate (within the corresponding calorimeter disk) as determined by the {\blue K}\strike{k}alman fit
 \item 
-  {$\bf \Delta R$} : radial residual of the calorimeter cluster as determined by the kalman fit
+  {$\bf \Delta R$} : {\blue the} radial residual of the calorimeter cluster as determined by the {\blue K}\strike{k}alman fit
 \item 
-  {\bf path} : overall length of the trajectory within the calorimeter disk, defines edges
+  {\bf path} : {\blue the} overall length of the trajectory within the calorimeter disk\strike{, defines edges} {\blue what does defines edges mean here?}
 \end{itemize}
 
-PID ANN training performed using ROOT TMVA package uses 10000 electron and 10000 muon events.
+{\blue The} PID ANN training {\blue is} performed using {\blue the} ROOT TMVA package{\blue ; it} uses 10000 electron and 10000 muon events.
 Events with muon decays in flight are excluded by requiring the last point (StepPointMC)
 of the muon MC trajectory to have Z > 11000 mm.
 %
 To ensure that all event variables used in the ANN training are defined, events used for training
-are required to pass the following requirements, the PID pre-selection cuts:
+are required to pass the following requirements\strike{, the PID pre-selection cuts}:
 
 \begin{itemize}
 \item 
-  reconstructed under electron hypothesis track passes the track selection cuts
+  {\blue the track} reconstructed under electron hypothesis \strike{track} passes the {\blue $\MuToEm$} track selection cuts
 \item 
-  an event has a reconstructed cluster 
+  \strike{an} {\blue the} event has a reconstructed cluster 
 \item 
-  $\Delta T > -100$ : this is a requirement for the calorimeter cluster not to be rejected by the track fit.
-  Ff the cluster is rejected, the $\Delta T$ value set to -999.
+  $\Delta \strike{T} {\blue T_0} > -100$ {\blue ns} : this is a requirement for the calorimeter cluster not to be rejected by the track fit.
+  \strike{Ff} {\blue If} the cluster is rejected, the $\Delta \strike{T} {\blue T_0}$ value {\blue is} set to -999 {\blue ns}.
 \item
   $-50 mm ~<~ Z_{cluster} ~<~ 250 mm$ : after the fit, the cluster Z coordinate is consistent in Z with the
-  Z-position of the corresponding calorimeter disk. 
+  Z-position of the corresponding calorimeter disk.
 \end{itemize}
 
-Figures \ref{fig:pid_training_1} and \ref{fig:pid_training_2} show distributions of the electron
-and muon variables used for ANN training.
+Figures \ref{fig:pid_training_1} and \ref{fig:pid_training_2} show {\blue the} distributions of the electron
+and muon variables used for {\blue the PID} ANN training.
 
 \begin{figure}[H]
   \hspace{-0.6in}
@@ -146,7 +155,9 @@ and muon variables used for ANN training.
   % \captionof{figure} {
   \caption{
     \label{fig:pid_training_1}
-    variables used in PID MVA training: E/P, N(crystals), E(seed)/E, $\Delta T$
+    %% {\blue The} variables used in {\blue the} PID \strike{MVA} {\blue ANN} training: E/P, N(crystals), E(seed)/E, $\Delta T$
+    %% {\blue (c) x axis + stats box should be E(seed)/E;}
+    %% {\blue trk\_200/xxx label not needed here}
   }
 \end{figure}
 
@@ -174,10 +185,11 @@ and muon variables used for ANN training.
     };
     % \node [text width=6cm, scale=0.8] at (4.5,6.4) {mu2e-18894 by Kevin Lynch and Jim Popp};
   \end{tikzpicture}
-  \captionof{figure} {
-    % \caption{
+  %% \captionof{figure} {
+    \caption{
     \label{fig:pid_training_2}
-    variables used in PID MVA training: $\Delta Z$, $\Delta R$, path
+    {\blue The} variables used in {\blue the} PID \strike{MVA} {\blue ANN} training: $\Delta Z$, $\Delta R$, path
+    {\blue trk\_200/xxx label not needed here}    
   }
 \end{figure}
 
@@ -185,8 +197,19 @@ and muon variables used for ANN training.
 Results of the PID ANN training are shown in Figure \ref{fig:pid_training_3}. 
 From the training plots, one might conclude that the separation between the
 electrons and muons provided by the ANN is close to perfect. 
+\strike{\textbackslash n}
+\strike{To identify 105 MeV electrons, we require the PID ANN score $S_{PID} > 0.5$.}
+\strike{\textbackslash n}
+{\blue The} PID ANN training is validated by running the PID algorithm on {\blue the} full ele00s61b0 and mumi0s51b0 datasets.
+The datasets have about 200K events each, including events used for training.
+{\blue The r}\strike{R}esults presented in Figure \ref{fig:pid_training_4} show that the efficiency of \strike{the}
+{\blue a} $S_{PID} > 0.5$ cut 
+for electrons is about 99.2\%, and about 0.8\% of muons are mis-identified as electrons. The spike at 1
+in the ANN score distribution for muons corresponds to muon decays in flight, where the particle
+reconstructed in the event is an electron. Remaining sources of muon mis-identification will be 
+studied in detail later.
+{\blue To identify 105 MeV electrons for SU2020 analyses, we require a PID ANN score of $S_{PID} > 0.5$.}
 
-To identify 105 MeV electrons, we require the PID ANN score $S_{PID} > 0.5$.
 
 \begin{figure}[H]
 \hspace{-0.6in}
@@ -208,18 +231,10 @@ To identify 105 MeV electrons, we require the PID ANN score $S_{PID} > 0.5$.
   % \captionof{figure} {
   \caption{
     \label{fig:pid_training_3}
-    output of the PID ANN training: overtraining check on the left and efficiency vs rejection 
+    {\blue The} output of the PID ANN training: overtraining check on the left and efficiency vs rejection 
     on the right
   }
 \end{figure}
-
-PID ANN training is validated by running the PID algorithm on full ele00s61b0 and mumi0s51b0 datasets.
-The datasets have about 200K events each, including events used for training. 
-Results presented in Figure \ref{fig:pid_training_4} show that the efficiency of the $S_{PID} > 0.5$ cut 
-for electrons is about 99.2\%, and about 0.8\% of muons are mis-identified as electrons. The spike at 1
-in the ANN score distribution for muons corresponds to muon decays in flight, where the particle
-reconstructed in the event is an electron. Remaining sources of muon mis-identification will be 
-studied in detail later.
 
 \begin{figure}[H]
   \begin{tikzpicture}
@@ -237,16 +252,21 @@ studied in detail later.
     Distribution in the PID ANN score for electron and muon samples, samples include events used for training,
     10000 events each. A spike in muon PID at 1  - muon decays in flight. \\ 
     {\color{red} \bf check that underflows are events without clusters}
+    {\blue x axis label should be ANN score}
+    {\blue trk\_200/xxx label not needed here}    
   }
 \end{figure}
 
-Efficiencies of the PID preselection cuts for {\bf cele0s61b1} dataset are listed
+{\blue The e}\strike{E}fficiencies of the PID preselection cuts for {\blue the} {\bf cele0s61b1} dataset are listed
 in Table \ref{tab:pid_preselection_cuts}. The total preselection efficiency is about 93\%.
 %
-Out of that, approximately, 96\% comes from the requirement for the calorimeter cluster E > 10 MeV to be reconstructed in an event.
-Therefore, for events with the reconstructed track with P>100 and a reconstructed cluster, efficiency
-of the PID preselection is 0.967. Incremental efficiency of the PID selection is 0.993.
-
+Out of that, approximately\strike{,} 96\% comes from the requirement \strike{for} {\blue on} the calorimeter cluster {\blue that} E > 10 MeV
+to be reconstructed in an event.
+Therefore, for events with the reconstructed track with \strike{P>100} {\blue $P > 100$ MeV/c} and a reconstructed cluster, efficiency
+of the PID preselection is \strike{0.967}
+{\blue 96.7 \% -- how does 96\% of the inefficiency come from the cluster requirement, but after this efficiency is still 96.7\%?}. 
+\strike{Incremental efficiency of the PID selection is 0.993}
+{\blue The PID selection efficiency is 99.3\% for electron events passing the PID preselection}.
 \begin{table}[H]
   \begin{center}
     \begin{tabular}{l|c|c} % <-- Changed to S here.
@@ -256,7 +276,7 @@ of the PID preselection is 0.967. Incremental efficiency of the PID selection is
       total number of tracks          &  329715          &   0.330    \\
       \hline
       track passes TID cuts           &  193252          &   0.586    \\
-      $P > 100$                       &  178078          &   0.921    \\
+      $P > 100$ {\blue MeV/c}         &  178078          &   0.921    \\
       $|DR| < 100$ mm                 &  167028          &   0.938    \\
       $|DT| < 10$ ns                  &  167028          &   1.0      \\
       $-50 < dz < 250$                &  164951          &   0.988    \\
@@ -267,24 +287,28 @@ of the PID preselection is 0.967. Incremental efficiency of the PID selection is
   \end{center}
   \caption{
     \label{tab:pid_preselection_cuts}
-    PID preselection cuts (ele00s61b0) and efficiency for {\bf cele0s51b1} electrons 
+    {\blue The} PID preselection cuts ({\blue defined using \bf ele00s61b0} \strike{ele00s61b0}) and {\blue the}
+    efficiency for {\bf cele0s51b1} electrons
+    {\blue . TID cuts refers to the track ID cuts for the $\MuToEm$ channel.}
   }
 \end{table}
 
-Out of 109004 muons $P > 100$ and passing the preselection cuts, 799 have the PID ANN score $S_{PID} > 0.5$,
-which corresponds to the fake rate of about 0.8\%. Contributing to muon mis-identification are decays of
+Out of 109004 muons {\blue with} $P > 100$ {\blue MeV/c} and passing the preselection cuts, 799 have \strike{the}
+{\blue a} PID ANN score $S_{PID} > 0.5$,
+which corresponds to \strike{the} {\blue a} fake rate of about 0.8\%. Contributing to muon mis-identification are decays of
 stopped muons in the calorimeter with muons decaying fast and the energy of the produced electron counted
 as the part of the muon cluster energy. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection { Electrons, failing the PID selection}
+\subsection { Electrons failing the PID selection}
 \label{sec:electrons_failing_pid}
+{\blue Removed a comma in the title}
 
-Figure \ref{fig:electrons_failing_pid} compares distributions in some ID variables for electrons 
+Figure \ref{fig:electrons_failing_pid} compares distributions \strike{in} {\blue of} some ID variables for electrons 
 passing and failing the PID cuts.
-
-Although only 0.8\% Of events are in question, understanding of the ANN failures could help finding 
+\strike{\textbackslash n}
+Although only 0.8\% \strike{Of} {\blue of} events are in question, understanding of the ANN failures could help finding 
 reconstruction problems.
 \begin{itemize}
 \item 
@@ -333,15 +357,17 @@ reconstruction problems.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\subsection{\MuToEp\ Channel}
+\subsection{\MuToEp\ channel}
 \label{sec:mumep_channel_pid}
+{\blue lowercase title words after first word}
 
-PID in \MuToEp\ channel uses a similar ANN trained  using  92 MeV/c positrons and$\mu^+$'s from {\bf pos01s51b0}
-and {\bf mupl1s51b0} datasets. The training procedure is the same as described in Section \ref{sec:mumem_pid_ann_training}.
+{\blue The} PID in \MuToEp\ channel uses a similar ANN trained  using  92 MeV/c positrons and\strike{$\mu^+$'s}
+{\blue positive muons} from {\bf pos01s51b0} and {\bf mupl1s51b0} datasets {\blue respectively}. 
+The training procedure is the same as described in Section \ref{sec:mumem_pid_ann_training}.
 % 
 Figure \ref{fig:pid_score_mumep} shows distributions of the PID ANN score, $S_{PID}$,
-for 92 MeV positrons and $\mu^+$'s. About 1.2\% of all muon events have $S_{PID} > 0.5$,
-more than 50\% of those events are electrons produced in muon decays in flight.
+for 92 MeV{\blue /c} positrons and \strike{$\mu^+$'s} {\blue positive muons}. About 1.2\% of all muon events have $S_{PID} > 0.5$,
+more than 50\% of those events are \strike{electrons} {\blue positrons} produced in muon decays in flight.
 
 Plotting the data in log scale - see Figure \ref{fig:pid_score_mumep}(b) - reveals a spike around 0.25,
 present in both positron and muon distributions.
@@ -368,8 +394,9 @@ present in both positron and muon distributions.
   \end{tikzpicture}
   \captionof{figure} {
     \label{fig:pid_score_mumep}
-    Results of the PID ANN training for \MuToEp\ channel: distribution of the PID ANN score, $S_{PID}$,
-    for single 92.3 positrons and positive muons; (a): linear scale; (b): log scale.
+    {\blue The r}\strike{R}esults of the PID ANN training for {\blue the} \MuToEp\ channel: {\blue the} 
+    distribution of the PID ANN score, $S_{PID}$, for single 92.3 {\blue MeV/c} positrons and positive muons; (a): linear scale; (b): log scale.
     {\red Nature of the spike around 0.25 needs to be investigated.}
+    {\blue trk\_219/xxx label not needed here}    
   }
 \end{figure}
