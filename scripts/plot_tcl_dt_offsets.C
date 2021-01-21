@@ -83,7 +83,7 @@ void plot_tcl_dt_offsets(int Figure, int Print = 0) {
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_ele00s51b0_pid_emuana_trk_101_dt",Figure);
-    hd[0].fPlotLabel   = "#DeltaT = T(trk)-T(cl), 105 MeV/c e- , cluster large errors";
+    hd[0].fPlotLabel   = "#DeltaT = T(trk)-T(cl), 105 MeV/c e- , cluster assigned large errors";
     
     int nhist = 1;
     plot_hist_1d(hd,nhist,-1);
@@ -143,7 +143,7 @@ void plot_tcl_dt_offsets(int Figure, int Print = 0) {
     if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
   }
 //-----------------------------------------------------------------------------
-// fig  139:  corrected timing offsets with large cluster errors trk_101/tch_dt
+// fig  139:  corrected timing offsets with default cluster errors trk_101/tch_dt
 //-----------------------------------------------------------------------------
   if      (Figure == 139) {
     const char* dsid   = "su2020.su_stntuple_p02_dar_009_ele00";
@@ -169,7 +169,7 @@ void plot_tcl_dt_offsets(int Figure, int Print = 0) {
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_ele00s51b0_pid_emuana_trk_101_dt",Figure);
-    hd[0].fPlotLabel   = "#DeltaT = T(trk)-T(cl), 105 MeV/c e- , large errors, corrected cluster time";
+    hd[0].fPlotLabel   = "#DeltaT = T(trk)-T(cl), 105 MeV/c e- , default errors, corrected cluster time";
     
     int nhist = 1;
     plot_hist_1d(hd,nhist,-1);
