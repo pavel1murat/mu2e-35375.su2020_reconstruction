@@ -40,6 +40,8 @@ void init_local_datasets(stn_book* Book) {
 
     d  = Book->NewDataset ("su2020.cele0s61b2" ,"",-1,   1000000); 
     hf = Book->NewHistFile("su2020.cele0s61b2" ,"","su2020_track_ana_10_1070");
+    hf = Book->NewHistFile("su2020.cele0s61b2" ,"","su2020_track_ana_02_ffff");
+    hf = Book->NewHistFile("su2020.cele0s61b2" ,"","su2020_track_ana_12_1070");
 
     d  = Book->NewDataset ("su2020.cosm0s71b0" ,"",-1,   1000000); // cluster included 
     hf = Book->NewHistFile("su2020.cosm0s71b0" ,"","su2020_cosmic_ana_dar"  );
@@ -93,6 +95,10 @@ void init_local_datasets(stn_book* Book) {
 
     d  = Book->NewDataset ("su2020.mumi0s61b0" ,"",-1,  1000000);     // PID dataset
     hf = Book->NewHistFile("su2020.mumi0s61b0" ,"","pid_emuana");
+
+    d  = Book->NewDataset ("su2020.mupl3s51b0" ,"",-1,  1000000);     // 
+    hf = Book->NewHistFile("su2020.mupl3s51b0" ,"","su2020_track_ana_00_ffff");
+    hf = Book->NewHistFile("su2020.mupl3s51b0" ,"","su2020_track_ana_10_ffff");
 
     d  = Book->NewDataset ("su2020.pbar0s11b0" ,"",-1,2000000000); // Giovanni pbars at VD91
     hf = Book->NewHistFile("su2020.pbar0s11b0" ,"","spmc_ana"    );
