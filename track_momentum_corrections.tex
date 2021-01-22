@@ -4,10 +4,16 @@
 
 The mean value of the reconstructed track momentum extrapolated to the tracker entrance is
 slightly lower than the true MC momentum of the corresponding MC particle at the tracker entrance.
+%
+In the Mu2e offline, there are two different track fits used to determine the track parameters.
+Both fits use the same fitting algorithm, but the fits are performed with two different
+hit ambiguity resolvers, - a panel-based ambiguity resolver (PAR) and a doublet-based
+ambiguity resolver (DAR).
+%
 The offset is on the order of 30 keV/c and depends on the ambiguity resolver used in the track fit.
 We correct the reconstructed momentum of PAR tracks by 34 keV/c and DAR tracks by 30 keV/c.
 
-{\blue PAR and DAR are introduced in the next section but should be defined here}
+% {\blue PAR and DAR are introduced in the next section but should be defined here}
 
 \begin{figure}[h]
 \hspace{-0.6in}

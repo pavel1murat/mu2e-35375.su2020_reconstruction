@@ -273,13 +273,13 @@ void plot(int Figure, int Print = 0) {
     hd[0].fPlotLabel   = "dataset: cele0s51b2";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid,ana_job,"TrackComp","trk_126/dpf");
-    hd[1].fNewName     = "DAP_MVA > 0.8";
+    hd[1].fNewName     = "PAP_MVA > 0.8";
     hd[1].fRebin       = 2;
     hd[1].fDrawOpt     = "hist";
     // hd[1].fMarkerStyle = 20;
     // hd[1].fMarkerColor = kBlue+2;
     hd[1].fLineColor   = kBlue+2;
-    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+    hd[1].fStatBoxYMin = 0.54; hd[1].fStatBoxYMax=0.72;
     
     int nhist = 2;
     plot_hist_1d(hd,nhist,-1);
@@ -323,7 +323,7 @@ void plot(int Figure, int Print = 0) {
     //    hd[1].fMarkerColor = kBlue+2;
     hd[1].fLineColor   = kBlue+2;
     hd[1].fDrawOpt     = "hist";
-    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+    hd[1].fStatBoxYMin = 0.54; hd[1].fStatBoxYMax=0.72;  // DY = 0.18 
     
     int nhist = 2;
     plot_hist_1d(hd,nhist,-1);
@@ -369,7 +369,7 @@ void plot(int Figure, int Print = 0) {
     //    hd[1].fMarkerColor = kBlue+2;
     hd[1].fLineColor   = kBlue+2;
     hd[1].fDrawOpt     = "hist";
-    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+    hd[1].fStatBoxYMin = 0.54; hd[1].fStatBoxYMax=0.72;
     
     int nhist = 2;
     plot_hist_1d(hd,nhist,-1);

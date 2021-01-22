@@ -122,6 +122,9 @@ void init_local_datasets(stn_book* Book) {
     ds = Book->NewDataset ("su2020.pbar0s11b0" ,"",-1,2000000000); // Giovanni pbars at VD91
     hf = Book->NewHistFile(ds->id()            ,"","spmc_ana"    );
 
+    ds = Book->NewDataset ("su2020.pos00s51b0" ,"",-1,   1000000); 
+    hf = Book->NewHistFile(ds->id()            ,"","su2020_mva_test_dar_1070");
+
     ds = Book->NewDataset ("su2020.pos01s51b0" ,"",-1,   1000000); 
     hf = Book->NewHistFile(ds->id()            ,"","pid_emuana_1110");
     hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana_1110");

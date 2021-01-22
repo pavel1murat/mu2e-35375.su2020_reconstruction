@@ -89,7 +89,7 @@
 \begin{titlepage}
   \begin{flushright}
     \bf {MU2E/PHYSICS/36375} \\
-    version 1.00
+    version 1.01
     \today
  \end{flushright}
 
@@ -136,7 +136,15 @@
 
 \newpage
 \section { Introduction}
-All datasets referred to in this note are described in \cite{MU2E_36372_SU2020_DATASETS}.
+The simulation and reconstruction software used for SU2020 analyses is based on
+the Mu2e Offline tag v9\_0\_5, the starting point for the {\bf su2020} branch
+of the Mu2e Offline.
+In this note we will summarize  the most important software changes with respect to
+the base tag and describe several issues uncovered along the way, which do not
+affect the sensitivity estimates but need to be fixed nevertheless. 
+The latter are highlighted in red and summarized in Section \ref{sec:to_be_investigated}.
+
+All datasets referred to in this note are described in \cite{MU2E_36372_SU2020_DATASETS}. 
 
 \include{relative_tc_timing}
 \include{calorimeter_timing_resolution}

@@ -52,7 +52,7 @@ void plot_pid(int Figure, int Print = 0) {
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_pid_emuana_1070_trk_101_ep",Figure);
 			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";  // to make an empty plot label 
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,"su2020_TrackAna","trk_200/ep");
     hd[1].fNewName     = "electrons, E/P";
@@ -100,10 +100,10 @@ void plot_pid(int Figure, int Print = 0) {
     // hd[0].fMarkerStyle = 20;
     // hd[0].fMarkerSize  = 0.8;
     hd[0].fDrawOpt     = "hist";
+
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_pid_emuana_1070_trk_101_ncr",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,module,hist);
     hd[1].fNewName     = "electrons, ncr";
@@ -133,9 +133,9 @@ void plot_pid(int Figure, int Print = 0) {
     const char* hist   = "trk_200/seed_fr";
 
     hd[0]              = hist_data_t(catalog,"su2020",dsid,job,module,hist);
-    hd[0].fNewName     = "muons, ncr";
+    hd[0].fNewName     = "muons, E_{seed}/E";
     hd[0].fRebin       = 1;
-    hd[0].fXAxisTitle  = "N(crystals)";
+    hd[0].fXAxisTitle  = "E_{seed}/E";
     hd[0].fXMin        =  0.;
     hd[0].fXMax        = 30.;
     hd[0].fLabel       = "muons";
@@ -146,11 +146,10 @@ void plot_pid(int Figure, int Print = 0) {
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_pid_emuana_1070_trk_101_seed_fr",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,module,hist);
-    hd[1].fNewName     = "electrons, ncr";
+    hd[1].fNewName     = "electrons, E_{seed}/E";
     hd[1].fLabel       = "electrons";
     hd[1].fLineColor   = kBlue+2;
     hd[1].fDrawOpt     = "hist";
@@ -190,8 +189,7 @@ void plot_pid(int Figure, int Print = 0) {
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_pid_emuana_1070_trk_101_tch_dt",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,module,hist);
     hd[1].fNewName     = "electrons, #DeltaT";
@@ -234,8 +232,7 @@ void plot_pid(int Figure, int Print = 0) {
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_pid_emuana_1070_trk_101_tch_dz",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,module,hist);
     hd[1].fNewName     = "electrons, #DeltaZ";
@@ -278,8 +275,7 @@ void plot_pid(int Figure, int Print = 0) {
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_pid_emuana_1070_trk_101_tch_dr",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,module,hist);
     hd[1].fNewName     = "electrons, #DeltaR";
@@ -322,8 +318,7 @@ void plot_pid(int Figure, int Print = 0) {
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_pid_emuana_1070_trk_101_path",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,module,hist);
     hd[1].fNewName     = "electrons, path";
@@ -355,7 +350,7 @@ void plot_pid(int Figure, int Print = 0) {
     hd[0]              = hist_data_t(catalog,"su2020",dsid,job,module,hist);
     hd[0].fNewName     = "muons, PID";
     hd[0].fRebin       = 1;
-    hd[0].fXAxisTitle  = "path, mm";
+    hd[0].fXAxisTitle  = "PID ANN score, S_{PID}";
     //    hd[0].fYMax        =  25000.;
     hd[0].fXMin        = -0.2;
     hd[0].fXMax        =  1.199;
@@ -366,8 +361,7 @@ void plot_pid(int Figure, int Print = 0) {
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_pid_emuana_1070_trk_101_pidmvaout",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,module,hist);
     hd[1].fNewName     = "electrons, PID";
@@ -623,7 +617,7 @@ void plot_pid(int Figure, int Print = 0) {
     // hd[0].fYMax        = 16000;
     // hd[0].fXMin        = -8.;
     // hd[0].fXMax        =  4;
-    hd[0].fLabel       = "";
+    hd[0].fLabel       = " ";
     hd[0].fYLogScale   = 1;
     hd[0].fMarkerColor = kRed+1;
     hd[0].fDrawOpt     = "hist";
@@ -666,7 +660,7 @@ void plot_pid(int Figure, int Print = 0) {
     hd[0]              = hist_data_t(catalog,"su2020",dsid,job,"su2020_TrackAna","trk_200/dt");
     hd[0].fNewName     = "mu-, 105 MeV/c ";
     hd[0].fRebin       = 1;
-    hd[0].fXAxisTitle  = "dt, ns";
+    hd[0].fXAxisTitle  = "#DeltaT, ns";
     // hd[0].fYMin        = 0.1;
     // hd[0].fYMax        = 16000;
     // hd[0].fXMin        = -8.;
@@ -682,7 +676,7 @@ void plot_pid(int Figure, int Print = 0) {
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_su2020_track_ana_trk_200_dt",Figure);
 			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job2,"su2020_TrackAna","trk_200/dt");
     hd[1].fNewName     = "mu-, 92 MeV/c";
@@ -718,18 +712,17 @@ void plot_pid(int Figure, int Print = 0) {
     // hd[0].fYMax        = 16000;
     hd[0].fXMin        = -0.2;
     hd[0].fXMax        =  1.199;
-    hd[0].fLabel       = "";
     hd[0].fYLogScale   = 0;
     hd[0].fMarkerColor = kRed+1;
     hd[0].fDrawOpt     = "hist";
     hd[0].fStatBoxXMin = 0.70; hd[0].fStatBoxYMin = 0.75; hd[0].fStatBoxXMax = 0.90; hd[0].fStatBoxYMax=0.90;
 
+    hd[0].fLabel       = "";   // no legend
     //    hd[0].fLegendXMin = 0.35; hd[0].fLegendYMin = 0.40; hd[0].fLegendXMax = 0.55; hd[0].fLegendYMax=0.60;
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_su2020_track_ana_1110_trk_219_pidmvaout",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,"su2020_TrackAna","trk_219/pidmvaout");
     hd[1].fNewName     = "mu+, 92 MeV/c";
@@ -765,18 +758,17 @@ void plot_pid(int Figure, int Print = 0) {
     hd[0].fYMax        = 3.e5;
     hd[0].fXMin        = -0.2;
     hd[0].fXMax        =  1.199;
-    hd[0].fLabel       = "";
     hd[0].fYLogScale   = 1;
     hd[0].fMarkerColor = kRed+1;
     hd[0].fDrawOpt     = "hist";
     hd[0].fStatBoxXMin = 0.70; hd[0].fStatBoxYMin = 0.75; hd[0].fStatBoxXMax = 0.90; hd[0].fStatBoxYMax=0.90;
 
+    hd[0].fLabel       = "";  // no legend
     //    hd[0].fLegendXMin = 0.35; hd[0].fLegendYMin = 0.40; hd[0].fLegendXMax = 0.55; hd[0].fLegendYMax=0.60;
 
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_su2020_track_ana_1110_trk_219_pidmvaout_log",Figure);
-			      
-    hd[0].fPlotLabel   = "";
+    hd[0].fPlotLabel   = " ";   // empty plot label
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,job,"su2020_TrackAna","trk_219/pidmvaout");
     hd[1].fNewName     = "mu+, 92 MeV/c";

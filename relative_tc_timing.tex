@@ -34,24 +34,28 @@ The distribution of timing residuals with the cluster time corrected by 1.6 ns u
 the default coordinate and timing errors, 0.5 ns and 15 mm respectively, 
 assigned to the cluster shows a systematic shift of about 0.5-0.6 ns,
 apparently introduced by the fitting procedure.
-For now, we correct this additional cluster timing offset and use the default errors 
+For now, we correct this additional cluster timing offset and use the default errors
 assigned to the calorimeter cluster in the Kalman fit.
+\footnote{
+  On a technical note, correction of the the global track-to-calorimeter timing offset
+  has been introduced
+  {\bf before} the tuning of the calorimeter timing resolution had been completed. 
+  The global correction zeroing the offset of the timing residuals at that point 
+  was 1.86 ns, so that was the value of the introduced timing offset constant.
+  The observed timing offset value after the tuning is about 1.6 ns. 
+  The resulting unaccounted for, systematic offset of about 0.25 ns is about x2 smaller
+  than the offset introduced by the Kalman fitter.
+}
 
-Correction of the the global track-to-calorimeter timing offset  has been introduced {\bf before} 
-the tuning of the calorimeter timing resolution had been completed.
-The global correction zeroing the offset of the timing residuals was 1.86 ns,
-whereas after the tuning, the observed offset value is about 1.6 ns.
-The resulting unaccounted for, systematic offset of about 0.25 ns is however
-about x2 smaller than the offset introduced by the Kalman fitter.
-
-{\blue Not entirely clear what this paragraph is saying about the order of offsets
-and what the 1.86 ns offset is/came from, perhaps re-wording?}
+% {\blue Not entirely clear what this paragraph is saying about the order of offsets
+% and what the 1.86 ns offset is/came from, perhaps re-wording?}
+% I moved the paragraph down the page, making it a  footnote.
 
 It is also worth noting that the width of the distribution of the calorimeter cluster timing
-residuals is
-approximately 50\% of the error assigned to the cluster. The proportionality stays the same, about 50\%,  when the timing error assigned to the cluster varies in the range [0.25 ns, 1 ns].
-That is another indication
-of a uncompensated systematic effect related to the use of the calorimeter cluster in the Kalman fit.
+residuals is approximately 50\% of the error assigned to the cluster.
+The proportionality stays the same, about 50\%,  when the timing error assigned to the cluster
+varies in the range [0.25 ns, 1 ns]. That is another indication of a uncompensated systematic effect
+related to the use of the calorimeter cluster in the Kalman fit.
 
 \begin{figure}[h]
   \hspace{-0.8in}
