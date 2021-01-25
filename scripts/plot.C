@@ -597,7 +597,7 @@ void plot(int Figure, int Print = 0) {
     const char* ana_job = "su2020_track_ana_12_1070";
 
     hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_12_1070","su2020_TrackAna","trk_2012/p");
-    hd[0].fNewName     = "DAR_MVA > 0.2";
+    hd[0].fNewName     = "DIO_1batch";
     hd[0].fYLogScale   = 1;
     hd[0].fScale       = 1;
     hd[0].fRebin       = 1;
@@ -618,7 +618,7 @@ void plot(int Figure, int Print = 0) {
     hd[0].fPlotLabel   = "dataset:fele2s51b1;1e7 flat e-";
     
     hd[1]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_12_1070","su2020_TrackAna","trk_2013/p");
-    hd[1].fNewName     = "DAR_MVA > 0.2";
+    hd[1].fNewName     = "DIO_2batch;re-weighted";
     hd[1].fRebin       = 1;
     hd[1].fDrawOpt     = "hist";
     hd[1].fScale       = 1;        // 2:normalize to the same area as hd[0]
@@ -725,6 +725,130 @@ void plot(int Figure, int Print = 0) {
     x.fit(hd[0].fHist,52.3,51,54,-1);
 
     // hd[0].fHist->SetStats(0);
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+
+//-----------------------------------------------------------------------------
+// fig  167:  dio two batch vs one batch instantaneous rate; All sim events
+//-----------------------------------------------------------------------------
+  if      (Figure == 167) {
+    const char* dsid   = "su2020.fele2s51b1";
+    const char* ana_job = "su2020_track_ana_11_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_11_1070","su2020_TrackAna","evt_0/inst_lumi_0");
+    hd[0].fNewName     = "1-batch DIO";
+    // hd[0].fYLogScale   = 1;
+    hd[0].fScale       = 1;//
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "Instantaneous Intensity;POT/pulse";
+    hd[0].fYAxisTitle  = "";
+    // hd[0].fXMin        = 103.875;
+    // hd[0].fXMax        = 105.075;
+    hd[0].fLabel       = "1batch";
+    hd[0].fLabelXMin   = 0.15;
+    hd[0].fLineColor   = kRed+2;
+    hd[0].fMarkerStyle = 20;
+    hd[0].fMarkerSize  = 0.4;
+    hd[0].fMarkerColor = kRed+2;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_fele2s51b1_track_ana_11_1070_evt_0_inst_lumi",Figure);
+    hd[0].fPlotLabel   = "dataset:fele2s51b1";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_11_1070","su2020_TrackAna","evt_0/inst_lumi_2");
+    hd[1].fNewName     = "2-batch;re-weighted";
+    // hd[1].fYLogScale   = 1;
+    hd[1].fScale       = 1;//
+    hd[1].fRebin       = 1;
+    hd[1].fXAxisTitle  = "Instantaneous Intensity;POT/pulse";
+    hd[1].fYAxisTitle  = "";
+    // hd[0].fXMin        = 103.875;
+    // hd[0].fXMax        = 105.075;
+    hd[1].fLabel       = "2batch";
+    hd[1].fLabelXMin   = 0.15;
+    hd[0].fDrawOpt     = "pe";
+    // hd[1].fDrawOpt     = "hist";
+    // hd[1].fScale       = 1;        // 2:normalize to the same area as hd[0]
+    // hd[1].fMarkerStyle = 20;
+    // hd[1].fMarkerColor = kBlue+2;
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+
+    hd[1].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[1].fPlotName    = Form("figure_%05i_fele2s51b1_track_ana_11_1070_evt_0_inst_lumi",Figure);
+    hd[1].fPlotLabel   = "dataset:fele2s51b1";
+    
+    int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
+
+    hd[0].fCanvas->Modified();
+    hd[0].fCanvas->Update();
+
+    // TArrow* arr = new TArrow(200,100,200,20,0.015);
+    // arr->Draw();
+
+    if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+
+//-----------------------------------------------------------------------------
+// fig  166:  dio two batch vs one batch instantaneous rate; DIO bkg events
+//-----------------------------------------------------------------------------
+  if      (Figure == 166) {
+    const char* dsid   = "su2020.fele2s51b1";
+    const char* ana_job = "su2020_track_ana_11_1070";
+
+    hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_11_1070","su2020_TrackAna","trk_2012/inst_lumi_3");
+    hd[0].fNewName     = "1-batch DIO";
+    // hd[0].fYLogScale   = 1;
+    hd[0].fScale       = 1;//
+    hd[0].fRebin       = 1;
+    hd[0].fXAxisTitle  = "Instantaneous Intensity;POT/pulse";
+    hd[0].fYAxisTitle  = "";
+    // hd[0].fXMin        = 103.875;
+    // hd[0].fXMax        = 105.075;
+    hd[0].fLabel       = "1batch";
+    hd[0].fLabelXMin   = 0.15;
+    hd[0].fLineColor   = kRed+2;
+    hd[0].fMarkerStyle = 20;
+    hd[0].fMarkerSize  = 0.4;
+    hd[0].fMarkerColor = kRed+2;
+
+    hd[0].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[0].fPlotName    = Form("figure_%05i_fele2s51b1_track_ana_11_1070_evt_0_inst_lumi",Figure);
+    hd[0].fPlotLabel   = "dataset:fele2s51b1";
+
+    hd[1]              = hist_data_t(catalog,"su2020",dsid,"su2020_track_ana_11_1070","su2020_TrackAna","trk_2012/inst_lumi_5");
+    hd[1].fNewName     = "2-batch;re-weighted";
+    // hd[1].fYLogScale   = 1;
+    hd[1].fScale       = 1;//
+    hd[1].fRebin       = 1;
+    hd[1].fXAxisTitle  = "Instantaneous Intensity;POT/pulse";
+    hd[1].fYAxisTitle  = "";
+    // hd[0].fXMin        = 103.875;
+    // hd[0].fXMax        = 105.075;
+    hd[1].fLabel       = "2batch";
+    hd[1].fLabelXMin   = 0.15;
+    hd[0].fDrawOpt     = "pe";
+    // hd[1].fDrawOpt     = "hist";
+    // hd[1].fScale       = 1;        // 2:normalize to the same area as hd[0]
+    // hd[1].fMarkerStyle = 20;
+    // hd[1].fMarkerColor = kBlue+2;
+    hd[1].fLineColor   = kBlue+2;
+    hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.40; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.65;
+
+    hd[1].fCanvasName  = Form("Figure_%04i",Figure);
+    hd[1].fPlotName    = Form("figure_%05i_fele2s51b1_track_ana_11_1070_trk_2012_inst_lumi",Figure);
+    hd[1].fPlotLabel   = "dataset:fele2s51b1";
+    
+    int nhist = 2;
+    plot_hist_1d(hd,nhist,-1);
+
     hd[0].fCanvas->Modified();
     hd[0].fCanvas->Update();
 
