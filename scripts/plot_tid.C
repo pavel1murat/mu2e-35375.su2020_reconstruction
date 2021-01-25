@@ -525,12 +525,12 @@ void plot_tid(int Figure, int Print = 0) {
     const char* dsid   = "su2020.ele00s61b0";
 
     hd[0]              = hist_data_t(catalog,"su2020",dsid,"su2020_mva_test_dar_1070","su2020_TrackAna","trk_200/dpf");
-    hd[0].fNewName     = "e-, MVA: 105 MeV e-";
+    hd[0].fNewName     = "105 MeV e-, ANN training: 105 MeV e-";
     hd[0].fRebin       = 1;
     hd[0].fXAxisTitle  = "#Delta P";
     // hd[0].fXMin        = -10.;
     // hd[0].fXMax        = 10.;
-    hd[0].fLabel       = "105 MeV e-, MVA training: 105 MeV e-";
+    hd[0].fLabel       = "105 MeV e-, ANN training: 105 MeV e-";
     hd[0].fYLogScale   = 1;
     hd[0].fMarkerColor = kRed+1;
     // hd[0].fMarkerStyle = 20;
@@ -541,22 +541,22 @@ void plot_tid(int Figure, int Print = 0) {
     hd[0].fCanvasName  = Form("Figure_%04i",Figure);
     hd[0].fPlotName    = Form("figure_%05i_su2020_mva_test_dar",Figure);
 			      
-    hd[0].fPlotLabel   = "MVA selections: ele00s61b0 vs pos00s51b0";
+    hd[0].fPlotLabel   = "track selection with different ANNs";
     hd[0].fLegendXMin  = 0.12; hd[0].fLegendYMin = 0.55; hd[0].fLegendXMax = 0.46; hd[0].fLegendYMax=0.70;
 
     const char* dsid2   = "su2020.pos00s51b0";
 
     hd[1]              = hist_data_t(catalog,"su2020",dsid2,"su2020_mva_test_dar_1070","su2020_TrackAna","trk_200/dpf");
-    hd[1].fNewName     = "e+, MVA: 105 MeV e-";
-    hd[1].fLabel       = "105 MeV e+, MVA training: 105 MeV e-";
+    hd[1].fNewName     = "105 MeV e+, ANN training: 105 MeV e-";
+    hd[1].fLabel       = "105 MeV e+, ANN training: 105 MeV e-";
     hd[1].fLineColor   = kBlue+2;
     hd[1].fLineWidth   = 2;
     hd[1].fDrawOpt     = "hist";
     hd[1].fStatBoxXMin = 0.65; hd[1].fStatBoxYMin = 0.50; hd[1].fStatBoxXMax = 0.9; hd[1].fStatBoxYMax=0.70;
     
     hd[2]              = hist_data_t(catalog,"su2020",dsid,"su2020_mva_test_dar_0170","su2020_TrackAna","trk_200/dpf");
-    hd[2].fNewName     = "e-, MVA: 92MeV e+";
-    hd[2].fLabel       = "105 MeV e-, MVA training: 92MeV e+";
+    hd[2].fNewName     = "105 MeV e-, ANN training:  92 MeV e+";
+    hd[2].fLabel       = "105 MeV e-, ANN training:  92 MeV e+";
     hd[2].fLineColor   = kBlue-1;
     hd[2].fFillColor   = kBlue-1;
     hd[2].fFillStyle   = 3001;

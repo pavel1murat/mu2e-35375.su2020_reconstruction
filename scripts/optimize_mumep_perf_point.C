@@ -112,8 +112,8 @@ void optimize_mumep() {
   gr_par_cpos0s51b1->Draw("lp,same");
 
   TLegend* leg = new TLegend(0.15,0.5,0.45,0.75);
-  leg->AddEntry(gr_dar_cpos0s51b1,"DAR cpos0s51b1:fpos2s51b1");
-  leg->AddEntry(gr_par_cpos0s51b2,"PAR cpos0s51b2:fpos2s51b1");
+  leg->AddEntry(gr_dar_cpos0s51b1,"DAR cpos0s51b1");
+  leg->AddEntry(gr_par_cpos0s51b2,"PAR cpos0s51b1");
 
   leg->Draw();
 }
