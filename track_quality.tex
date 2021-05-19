@@ -296,7 +296,7 @@ in all \MuToEp\ search analyses.
 \subsection{Track selection cuts summary}
 \label{sec:track-selection_cuts_summary}
   
-For SU2020 analyses, a well reconstructed track is a DAR track satisfying the following requirements {\blue :}
+For SU2020 analyses, a well reconstructed track is a DAR track satisfying the following requirements:
 
 \begin{itemize}
 \item
@@ -305,7 +305,7 @@ For SU2020 analyses, a well reconstructed track is a DAR track satisfying the fo
   the reconstructed trajectory to the beam axis, which is located inside the Mu2e tracker and 
   % {\blue which point inside the tracker?} - point of the trajectory closest approach to the beam axis
   several meters away from the stopping target,
-  and therefore cannot be directly compared with the radius of the stopping target foils
+  and therefore cannot be directly compared with the radius of the stopping target foils ;
 \item 
   the track dip angle, $\lambda = 90^o - \alpha$, where $\alpha$ is the track angle with respect 
   to the solenoid axis, is within $ 0.5 < \tan{\lambda} < 1$. 
@@ -313,10 +313,48 @@ For SU2020 analyses, a well reconstructed track is a DAR track satisfying the fo
   It is a clean-up cutoff, which does not introduce any visible inefficiency. 
   The requirement $\tan{\lambda} < 1$ reduces the tracking acceptance by about 10\%, 
   and, most importantly, is an anti-cosmics selection. This cut also rejects tracks of particles 
-  produced upstream of the stopping target, i.e. coming from the TS
+  produced upstream of the stopping target, i.e. coming from the TS ; 
 \item
-  track quality ANN score $S_{ANN} > 0.2$ {\blue .}
+  track quality ANN score $S_{ANN} > 0.2$ ;
+\item
+  number of the active track hits $N_{\rm active} >= 20$ ;
+\item
+  a calorimeter cluster is included into a track fit and is not rejected by the fitter. For ntuple-level analyses,
+  this requirement is implemented by requiring the fit error $\sigma_{T0} < 0.9$ ns.
+  The implementation is approximate: in the fit, the calorimeter cluster is assigned $\sigma_T ~=~ 0.5$ ns,
+  so tracks with $\sigma_{T0} > 0.9$ ns are likely to have the calorimeter cluster rejected .
+  The effect of the cut is shown in Figure \ref{fig:sigt0_1_and_rmax_1}(a);
+\item
+  $R_{max} ~<~ 680$ mm . The distributions $R_{max}$ for CE and electrons reconstructed in cosmics-induced events
+  are shown in Figure \ref{fig:sigt0_1_and_rmax_1}(b);
+
 \end{itemize}
+
+\begin{figure}
+  \hspace{-0.6in}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00233_tid_1_t0err_1}
+      % }
+    };
+    \node[anchor=south west,inner sep=0] at (11.,0.) {
+      % \node[shift={(0 cm,0.cm)},inner sep=0,rotate={90}] at (0,0) {}
+      % \makebox[\textwidth][c] {
+      \includegraphics[width=0.60\textwidth]{figures/pdf/figure_00232_tid_1_rmax_1}
+      % }
+    };
+    \node [text width=1cm, scale=0.8] at ( 2.5,5.4) {(a)};
+    \node [text width=1cm, scale=0.8] at (13.5,5.4) {(b)};
+  \end{tikzpicture}
+  % \captionof{figure} {
+  \caption{
+    \label{fig:sigt0_1_and_rmax_1}
+    (a): $\sigma_{T0}$ distribution for CE tracks; (b): $R_{max}$  distributions for CE (cele0s61b1) and cosmics (cry33s51b0).
+    Tracks in the distributions pass all selections cuts except the cut on the plotted variable. Arrows shows the cut values.
+  }
+\end{figure}
 
 Although the \MuToEm\ and \MuToEp\ analyses use different track quality ANN's trained using tracks
 in a different momentum range, the cut value on the ANN score is the same in both cases.

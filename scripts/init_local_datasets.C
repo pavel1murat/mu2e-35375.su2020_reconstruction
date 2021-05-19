@@ -36,6 +36,7 @@ void init_local_datasets(stn_book* Book) {
 
     ds = Book->NewDataset ("su2020.cele0s61b1" ,"",-1,   1000000); 
     hf = Book->NewHistFile(ds->id()            ,"","pid_emuana_1012");
+    hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana.1011");
 
     ds = Book->NewDataset ("su2020.cele0s61b2" ,"",-1,   1000000); 
     hf = Book->NewHistFile(ds->id()            ,"","su2020_track_ana_10_1070");
@@ -59,6 +60,10 @@ void init_local_datasets(stn_book* Book) {
     ds = Book->NewDataset ("su2020.cry31s81b0" ,"",-1,   1000000); 
     hf = Book->NewHistFile("su2020.cry31s81b0" ,"","su2020_cosmic_ana_dar"  );
     hf = Book->NewHistFile("su2020.cry31s81b0" ,"","su2020_cosmic_ana_par"  );
+
+    ds = Book->NewDataset ("su2020.cry33s51b0" ,"",-1,   1000000); 
+    hf = Book->NewHistFile("su2020.cry33s51b0" ,"","su2020_cosmic_ana.1010" );
+    hf = Book->NewHistFile("su2020.cry33s51b0" ,"","su2020_track_ana.1010"  );
 
     ds = Book->NewDataset ("su2020.ele00s51b0" ,"",-1,       1000000); // cluster included 
     hf = Book->NewHistFile("su2020.ele00s51b0" ,"","track_comp"      );

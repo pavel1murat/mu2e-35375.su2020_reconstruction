@@ -4,12 +4,14 @@
 //-----------------------------------------------------------------------------
 // Figures : 200-299
 //
-// fig  200: ID_1/D0     cele0s51b0
-// fig  201: ID_1/tdip   cele0s51b0
-// fig  202: ID_1/trq    cele0s51b0
+// fig  200: ID_1/D0      : cele0s51b0
+// fig  201: ID_1/tdip    : cele0s51b0
+// fig  202: ID_1/trq     : cele0s51b0
 // ...
-// fig  222: ID_1/trq    cele0s51b2
-// fig  231: trk_200/dpf ele00s51b0/1070 vs pos00s51b0/1070 vs ele00s51b0/170
+// fig  222: ID_1/trq     : cele0s51b2
+// fig  231: trk_200/dpf  : ele00s51b0/1070 vs pos00s51b0/1070 vs ele00s51b0/170
+// fig  232: tid_1/rmax_1 : cele0s61b1 vs cry31s51b0
+// fig  233: tid_1/t0err_1: cele0s61b1 vs cry31s51b0
 //-----------------------------------------------------------------------------
 void plot_tid(int Figure, int Print = 0) {
   hist_data_t hd[10];
@@ -573,6 +575,89 @@ void plot_tid(int Figure, int Print = 0) {
     // arr->Draw();
 
     if (Print == 1) hd[0].fCanvas->Print(hd[0].fOutputFn.Data()) ;
+  }
+//-----------------------------------------------------------------------------
+// fig  232: tid_1/rmax_1 : cele0s61b1 vs cry31s51b0
+//-----------------------------------------------------------------------------
+  if      (Figure == 232) {
+    plot_data_t  p(2);
+    
+    const char* dsid1   = "su2020.cele0s61b1";
+    const char* dsid2   = "su2020.cry33s51b0";
+
+    p.hd[0]              = hist_data_t(catalog,"su2020",dsid1,"su2020_track_ana.1011","su2020_TrackAna","tid_1/rmax_1");
+    p.hd[0].fNewName     = "105 MeV e-";
+    p.hd[0].fLabel       = "105 MeV e-";
+    p.hd[0].fRebin       = 1;
+    p.hd[0].fYLogScale   = 1;
+    p.hd[0].fMarkerColor = kRed+1;
+    // hd[0].fMarkerStyle = 20;
+    // hd[0].fMarkerSize  = 0.8;
+    hd[0].fDrawOpt     = "hist";
+    p.hd[0].fStatBoxXMin = 0.65; p.hd[0].fStatBoxYMin = 0.70; p.hd[0].fStatBoxXMax = 0.9; p.hd[0].fStatBoxYMax=0.90;
+
+    p.hd[1]              = hist_data_t(catalog,"su2020",dsid2,"su2020_track_ana.1010","su2020_TrackAna","tid_1/rmax_1");
+    p.hd[1].fNewName     = "e-, cry33s51b0";
+    p.hd[1].fLabel       = "e-, cry33s51b0";
+    p.hd[1].fLineColor   = kBlue+2;
+    p.hd[1].fLineWidth   = 1;
+    p.hd[1].fDrawOpt     = "hist";
+    p.hd[1].fScale       = 2;
+    p.hd[1].fStatBoxXMin = 0.65; p.hd[1].fStatBoxYMin = 0.50; p.hd[1].fStatBoxXMax = 0.9; p.hd[1].fStatBoxYMax=0.70;
+    
+    p.fXMin              = 300.;
+    p.fXMax              = 800.;
+    p.fXAxisTitle        = "R_{max}, mm";
+    p.fCanvasName        = Form("Figure_%04i",Figure);
+    p.fName              = Form("figure_%05i_tid_1_rmax_1",Figure);
+    p.fLabel             = "track selection with different ANNs";
+    p.fLegendXMin        = 0.12; p.fLegendYMin = 0.55; p.fLegendXMax = 0.4; p.fLegendYMax=0.70;
+
+    plot_hist_1d(&p,-1);
+
+    TArrow* arr = new TArrow(680,500,680,100,0.015);
+    arr->SetLineColor(kRed);
+    arr->SetLineWidth(2);
+    arr->Draw();
+
+    if (Print == 1) p.print() ;
+  }
+//-----------------------------------------------------------------------------
+// fig  233: tid_1/t0err_1 : cele0s61b1 vs cry31s51b0
+//-----------------------------------------------------------------------------
+  if      (Figure == 233) {
+    plot_data_t  p(1);
+    
+    const char* dsid1   = "su2020.cele0s61b1";
+    const char* dsid2   = "su2020.cry33s51b0";
+
+    p.hd[0]              = hist_data_t(catalog,"su2020",dsid1,"su2020_track_ana.1011","su2020_TrackAna","tid_1/t0err_1");
+    p.hd[0].fNewName     = "105 MeV e-";
+    p.hd[0].fLabel       = "105 MeV e-";
+    p.hd[0].fRebin       = 1;
+    p.hd[0].fYLogScale   = 1;
+    p.hd[0].fLineColor = kBlue+2;
+    // hd[0].fMarkerStyle = 20;
+    // hd[0].fMarkerSize  = 0.8;
+    p.hd[0].fDrawOpt     = "hist";
+    p.hd[0].fStatBoxXMin = 0.65; p.hd[0].fStatBoxYMin = 0.70; p.hd[0].fStatBoxXMax = 0.9; p.hd[0].fStatBoxYMax=0.90;
+
+    // p.fXMin              = 300.;
+    // p.fXMax              = 800.;
+    p.fXAxisTitle        = "#sigma_{T0}, ns";
+    p.fCanvasName        = Form("Figure_%04i",Figure);
+    p.fName              = Form("figure_%05i_tid_1_t0err_1",Figure);
+    p.fLabel             = "track #sigma_{T0}";
+    p.fLegendXMin        = 0.30; p.fLegendYMin = 0.65; p.fLegendXMax = 0.6; p.fLegendYMax=0.70;
+
+    plot_hist_1d(&p,-1);
+
+    TArrow* arr = new TArrow(0.9,2500,0.9,200,0.015);
+    arr->SetLineColor(kRed);
+    arr->SetLineWidth(2);
+    arr->Draw();
+
+    if (Print == 1) p.print() ;
   }
 }
 
