@@ -30,5 +30,14 @@
   
   cat reference.ris | ris2xml | xml2bib >> ref.bib
 
-* working comments:                                                          
+* ------------------------------------------------------------------------------
+* working comments and comments by reviewers:                                                          
+* ------------------------------------------------------------------------------
+* comments by Dave: [[mu4e:msgid:CAM0yFoWiN_2yaLf9fQqYU3GbEaq7P=dPmrQPTSGbQ2jgYg+gkA@mail.gmail.com][Re: PBI for SU2020]]
+* ------------------------------------------------------------------------------
+* brief history of revisions
+* ------------------------------------------------------------------------------
+* v1.00 : initial version
+* v1.01 : first posted 
+* v1.03 : added reference to Dave's PID
 * ------------------------------------------------------------------------------

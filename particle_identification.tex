@@ -56,13 +56,19 @@ have been used to train the PID ANN for the \MuToEm\ channel.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection {PID ANN training }
 \label{sec:mumem_pid_ann_training}
-% {\blue lowercase title words after first word}
+
+Similar to \cite{MU2E_26664_PID}, the ANN training relies on the reconstructed 
+track parameters coming out of the Kalman fit and exploits the fact that the Kalman
+fitter also includes into the fit the calorimeter cluster, when that is available,
+Therefore, not only the reconstructed track parameters but also the track-to-cluster
+residuals used for ANN training come out of the Kalman fit. 
 
 MVA classifiers were trained only for DAR tracks, however, based on the nature of 
 the variables used, the trained MVA should perform equally well for PAR tracks.
 %
 Both electron and muon reconstruction were run on the same event. 
-In principle, using information from two reconstruction passes on a given event adds information that may improve electron-muon separation.
+In principle, using information from two reconstruction passes on a given event adds
+information that may improve electron-muon separation.
 However, it was found that adding  the requirement that each track is reconstructed under
 an electron and muon hypotheses complicates reconstruction logic and increases
 the number of special cases to consider without providing a visible improvement. 
@@ -88,7 +94,7 @@ The following event variables were used in the ANN training:
 \item 
   {$\bf \Delta R$} : the radial residual of the calorimeter cluster as determined by the Kalman fit
 \item 
-  {\bf path} : the overall length of the trajectory within the calorimeter disk
+  {\bf path} : the overall length of the trajectory within the calorimeter disk, calculated by the fitter
 \end{itemize}
 
 The PID ANN training is performed using the ROOT TMVA package ; it uses 10000 electron and 10000 muon events.
@@ -180,7 +186,6 @@ and muon variables used for the PID ANN training.
     The variables used in the PID ANN training: $\Delta Z$, $\Delta R$, path
   }
 \end{figure}
-
 
 Results of the PID ANN training are shown in Figure \ref{fig:pid_training_3}. 
 From the training plots, one might conclude that the separation between the
